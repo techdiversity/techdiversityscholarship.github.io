@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tech Diversity Scholarship</title>
+  <meta name="description" content="The Tech Diversity Scholarship provides access to technology education for all." />
+  <meta name="keywords"  content="tech,divesity,scholarships,technology,education,school,college,financial-aid,minorities,women,disabled,military" />
+  <meta name="author" content="The Iron Yard x Joey Gaskin">
+  <meta name="Resource-type" content="Document" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic,600italic,600" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+  <script type="text/javascript" src="js/jquery.fullPage.js"></script>
+
+  <!-- ###################################################################################################
+      ####################################################################################################
+      ####################################################################################################
+      ###      ,#.   #####      ############  ########     ####  ########################  ###############
+      ####     t#.    ####      ############  ########       ###############################  ############
+      #####    G#:     #####  ###   ###i   t     i####  ###   #    ###  #   ;#. #  #    #  #      ###  ###
+      #####    K#:     #####  ##  i  #,    #      ####  ####  #    ### :  ,  K.         #         ##. G###
+      ######   ##:     #####  #, ###    ####  ##  ####  ####  #  #  #  # :##  :  ##  i###  #  ###  #  ####
+      #######  ##:     #####  #         ####  ##  ####  ####  #  #  #  t      : ####    #  #  ###  #  ####
+      ######## ##:     #####  #  #####  ####  ##  ####  ###   #  #  , ## i####: ######  #  #  ###G t #####
+      ######## ##:    ######  ##  ##i#   # #  ##  ####  .    ##  ##   ##  ###t: ### ##  #  #  #E##   #####
+      ###########.   #######  ##W    ##    #  ##  ####      ###  ##   ###    i. ###     #  #    ##  :#####
+      ############################################################################################  ######
+      ##########################################################################################    ######
+      ########################################################## #########f###############L#####   #######
+      ########################################################## ######### ############### ##### #########
+      ########################################################## ######### ############### ##### #########
+      ########################################################## ######### ############### ###############
+      ################################################# # # # f #  :# # ,# ## # ##   #:# #  # ## # ## ####
+      ################################################# ### ###  # #.### # # ## ## ##L ### ## #,t# ## ####
+      ################################################## : #### ## # ### # # ## ## ###t ## ## # ## ## ####
+      ################################################.##  #### ## # ##:# ## #  # ###f##  ## .# ## ## ####
+      ################################################   ##  ## ##  #  W#  #  #   ###   # ##  #  #:  #####
+      ########################################################################################### ########
+      ########################################################################################### ########
+      ########################################################################################### ########
+      ####################################################################################################
+      ####################################################################################################
+      ####################################################################################################
+
+                                         TECH DIVERSITY SCHOLARSHIP
+
+                          @theironyard  @peterbarth  @nathanspainhour  @joeygaskin
+
+      -->
+
+
+      <!-- Allows page to load properly -->
+      <style>
+              html,body {
+                  margin: 0;
+                  padding: 0;
+                  overflow:hidden;
+              }
+
+              .section,
+              .slide,
+              .fp-tableCell{
+                  height: 100vh;
+              }
+          </style>
+
+          <!-- Script function-->
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+  				$('#tech-diversity').fullpage({
+            loopHorizontal: false,
+            lockAnchors:true,
+  					anchors:['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
+            sectionsColor: ['#FFFFFF', '#D8D8D8', '#99B7C5', '#D8D8D8', '#526C79', '#F8CE76', '#9AB7C5'],
+  					navigation: true,
+  					navigationPosition: 'left',
+  					navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+  					showActiveTooltip: true,
+  					slidesNavigation: false,
+  					slidesNavPosition: 'bottom',
+  					slideTooltips: ["S0Slide 0", "S0Slide 1", "S0Slide 2", "S0Slide 3", "S1Slide 0", "S1Slide 1", "S1Slide 2", "S1Slide 3", "S2Slide 0", "S2Slide 1", "S2Slide 2", "S2Slide 3"],
+            afterRender: function(){
+              $('#fp-nav').addClass('custom');
+            },
+            afterLoad: function(anchorLink, index){
+              if(index==0){
+                $('#fp-nav').removeClass('custom');
+              }else if(index==2){
+                $('#fp-nav').removeClass('custom');
+              }else if(index==4){
+                $('#fp-nav').removeClass('custom');
+              }else if(index==5){
+                $('#fp-nav').addClass('custom');
+              }else if(index==7){
+                $('#fp-nav').removeClass('custom');
+              }else{
+                $('#fp-nav').addClass('custom');
+              }
+
+            },
+
+            afterLoad: function(anchorLink, index){
+               var loadedSection = $(this);
+
+               //using index
+               if(index == 1){
+                   $( ".fp-next" ).hide();
+               } else if (index == 2){
+                   $( ".fp-next" ).show();
+                 }
+             },
+
+
+
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+                        var loadedSlide = $(this);
+                        //first slide of the second section
+
+              if(anchorLink == 'students' && slideIndex == 1){
+                  $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'right');
+              } else if (index == 2){$.fn.fullpage.setKeyboardScrolling(true,'right');
+            }
+
+
+              if(anchorLink == 'students' && slideIndex == 2){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+              if(anchorLink == 'students' && slideIndex == 3){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+              if(anchorLink == 'students' && slideIndex == 4){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+              if(anchorLink == 'students' && slideIndex == 5){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+              if(anchorLink == 'students' && slideIndex == 6){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+              if(anchorLink == 'students' && slideIndex == 7){
+                  $( ".fp-prev" ).hide() && $( ".fp-next" ).hide() && $.fn.fullpage.setKeyboardScrolling(false,'left, right');
+              }
+
+            },
+
+            onLeave: function(index, nextIndex, direction){
+             var leavingSection = $(this);
+
+             //after leaving section 2
+             if(index == 2 && direction =='down'){
+                 $( ".fp-next" ).hide();
+             }
+           },
+
+              onSlideLeave: function(anchorLink, index, slideIndex, direction){
+                 var leavingSlide = $(this);
+
+
+             if(anchorLink == 'students' && slideIndex == 1 && direction =='down, up'){
+               $( ".fp-next" ).hide();
+             }
+           },
+  				});
+  			});
+
+
+                  //adding the action to the button
+            $(document).on('click', '#applytoday', function(){
+              $.fn.fullpage.silentMoveTo('overview', 1);
+            });
+
+                  //adding the action to the button
+            $(document).on('click', '#leroy-story', function(){
+              $.fn.fullpage.silentMoveTo('students', 2);
+            });
+
+            //adding the action to the button
+            $(document).on('click', '#astrid-story', function(){
+            $.fn.fullpage.silentMoveTo('students', 3);
+            });
+
+            //adding the action to the button
+            $(document).on('click', '#andrew-story', function(){
+            $.fn.fullpage.silentMoveTo('students', 4);
+            });
+
+            //adding the action to the button
+            $(document).on('click', '#bernard-story', function(){
+            $.fn.fullpage.silentMoveTo('students', 5);
+            });
+
+            //adding the action to the button
+            $(document).on('click', '#michelle-story', function(){
+            $.fn.fullpage.silentMoveTo('students', 6);
+            });
+
+            //adding the action to the button
+            $(document).on('click', '#wonman-story', function(){
+            $.fn.fullpage.silentMoveTo('students', 7);
+            });
+
+            $(document).on('click', '#students-home', function(){
+              $.fn.fullpage.silentMoveTo('students', 0);
+            });
+
+  </script>
+
+          <!-- Custom Style-->
+
+  <style>
+  body {
+    margin:0;
+    padding:0;
+    font-family: "Open Sans", "Gentium Book Basic", "PT Sans", Helvetica, Arial, Verdana, sans-serif, serif;
+    background-color: #526C79;
+  }
+
+  /* Colors
+  * --------------------------------------- */
+  #white {
+    color: white;
+  }
+
+  /* Custom Navigation
+  * --------------------------------------- */
+  #fp-nav.custom ul li a.active span,
+  .fp-slidesNav ul li a.active span,
+  #fp-nav.custom ul li:hover a.active span,
+  .fp-slidesNav ul li:hover a.active span{
+    background: #fff;
+    opacity: 1;
+  }
+  #fp-nav.custom ul li a span, .fp-slidesNav ul li a span {
+    border: 1px solid #fff;
+    background: #fff;
+    opacity: .5;
+  }
+  #fp-nav.custom .fp-tooltip{
+    color: #fff;
+  }
+  #leroy-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #astrid-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #andrew-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #bernard-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #michelle-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #wonman-story{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  .fp-responsive #mySection,
+  .fp-responsive #mySection .fp-slide,
+  .fp-responsive #mySection .fp-tableCell{
+    height: auto !important;
+  }
+  /* Arrow Controls
+  * --------------------------------------- */
+  .fp-controlArrow.fp-prev, .fp-controlArrow.fp-next {border-color: transparent #CCC!important;}
+
+  /* Section Basics
+  * --------------------------------------- */
+  .section {
+    overflow:hidden;
+    color: #526C79;
+  }
+  .section-frame {
+    margin: 0 auto;
+    width:80%;
+  }
+  .section-left {
+    float: left;
+    width: 45%;
+    margin-left: 10px;
+  }
+  .section-right {
+    float: right;
+    width: 50%;
+  }
+  .section-banner-1 {
+    right: -20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity:0;
+    -moz-transition: opacity 2s; /* Firefox 4 */
+    -webkit-transition: opacity 2s; /* Safari and Chrome */
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+  }
+  .section-banner-2 {
+    display:none;
+    opacity:0;
+    -moz-transition: opacity 2s; /* Firefox 4 */
+    -webkit-transition: opacity 2s; /* Safari and Chrome */
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+  }
+  .section-text {
+    position: relative;
+    margin: 10% 15%;
+    width:30%;
+  }
+  .section h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  .section h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .section h4{
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 18px;
+    font-weight: normal;
+  }
+  .section h6{
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: italic;
+  }
+  .section p {
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .section-img {
+    opacity:0;
+    -moz-transition: opacity 2s; /* Firefox 4 */
+    -webkit-transition: opacity 2s; /* Safari and Chrome */
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+  }
+  .section button {
+    background: rgba(123, 202, 241, .69);
+    border-radius: 2px;
+    border: none;
+    width: 229px;
+    height: 51px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    text-decoration: none;
+    font-family: "Arial";
+    font-size: 16px;
+    letter-spacing: .8px;
+    font-weight: 600;
+  }
+  .section-logo-block {
+    width: 100%;
+  }
+  .section-logo-block div {
+    display: inline-block;
+    padding:7px;
+  }
+  .section-interest-white {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+  .section-interest-white img {
+    padding-left: 8px;
+    vertical-align: middle;
+  }
+  .section-interest-blue {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 30px;
+    opacity: 0.49;
+  }
+  .section-interest-blue img {
+    padding-left: 8px;
+    vertical-align: middle;
+  }
+  .section-mobile {
+    display:none;
+    width: 100%;
+    height:auto;
+    margin:0;
+  }
+  .section-mobile-img {
+    display:none;
+    top:0px;
+  }
+  .section-mobile-img img {
+    width: 100%;
+    height:auto;
+    opacity:0;
+    -moz-transition: opacity 2s; /* Firefox 4 */
+    -webkit-transition: opacity 2s; /* Safari and Chrome */
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+  }
+  .section-mobile-box{
+    display: none;
+    bottom:0px;
+    width: 100%;
+  }
+  .section-mobile-text {
+    display:none;
+    width: 75%;
+    margin: 25px auto;
+  }
+
+  /* Section 1 - Overview
+  * --------------------------------------- */
+  .overview-left {
+    float: left;
+    width: 34%;
+    margin-top: 15%;
+  }
+  .overview-left div {
+    display: block;
+    float: right;
+  }
+  .overview-right {
+    float: right;
+    width: 35%;
+    margin-right: 50px;
+  }
+  #overview-section {
+
+  }
+  #overview-slide {
+    background: url(img/overview-main-image.png) no-repeat center center;
+    background-size: cover;
+    border-top: 10px solid #F8CE76;
+    position: relative;
+  }
+  #overview-bottom {
+    width: 100%;
+    height: 120px;
+    background-color: #526C79;
+    position: absolute;
+    bottom: 0px;
+  }
+  #overview-bottom-inner {
+    margin: auto;
+    width:850px;
+    text-align: justify;
+  }
+  #overview-bottom-inner div {
+    padding: 25px 16px;
+    display: inline-block;
+  }
+  .overview-div {
+    height: 100%;
+    overflow: hidden;
+    width: 58%;
+  }
+  .overview-div-text{
+    width: 58%;
+    margin-top: 24%;
+    float: right;
+  }
+  .overview-response {
+    display:none;
+    margin-top: 80px;
+  }
+  .overview-response div {
+    display: inline-block;
+    padding: 5px;
+  }
+  .overview-response-2 {
+    display:none;
+    right:0px;
+  }
+  .overview-response-2 div {
+    display: block;
+    padding: 20px;
+  }
+  #overview-response-3 {
+    display:none;
+  }
+  #overview-app {
+    width:80%;
+    margin: 0 auto;
+    overflow-y: scroll !important;
+  }
+  #overview-app form{
+    background-color: #D8D8D8;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  #overview-app label{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+  }
+  #overview-app input{
+    font-size: 14px;
+  }
+  #overview-app textarea{
+    font-size: 14px;
+  }
+  #overview-app-border {
+    border-top: 10px solid #F8CE76;
+  }
+  #overview-app-text {
+
+  }
+
+  /* Section 2 - Students
+  * --------------------------------------- */
+  .students-success-story {
+    width: 500px;
+    height: 270px;
+  }
+  .students-photo {
+    float: left;
+    padding: 5px;
+  }
+  .students-pic {
+    margin:40% auto;
+  }
+  .students-pic div {
+    display:block;
+  }
+  .students-left {
+    float: left;
+    width: 31%;
+  }
+  .students-right {
+    float: left;
+    width:60%;
+    height: 500px;
+    margin-top:10%;
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+  }
+  .students-more {
+    width: 100%;
+    height: auto;
+  }
+  .students-more-left {
+    float:left;
+    width: 50%;
+  }
+  .students-more-right {
+    float:right;
+    width: 50%;
+  }
+  .students-more-onleft {
+    float:left;
+    vertical-align: top;
+    width: 50%;
+    margin-bottom: 25px;
+  }
+  .students-more-onright {
+    float:right;
+    vertical-align: top;
+    width: 50%;
+    margin-bottom: 25px;
+  }
+  .students-more-text {
+    margin-top: 10px;
+    width: 200px;
+  }
+  .students-more-stories {
+    display:block;
+    margin-bottom:80px;
+    margin-top: 4%;
+  }
+  .fp-viewing-overview-0 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-overview-1 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-overview-1 div.fp-controlArrow.fp-prev{
+    display: block !important;
+  }
+  .fp-viewing-students-1 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-2 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-2 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-3 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-3 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-4 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-4 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-5 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-5 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-6 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-6 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  .fp-viewing-students-7 .fp-tableCell {
+    vertical-align: inherit;
+  }
+  .fp-viewing-students-7 div.fp-controlArrow.fp-next{
+    display: none !important;
+  }
+  #students-home {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+    cursor:pointer;
+  }
+  #students-home img {
+    padding-right: 8px;
+    vertical-align: middle;
+  }
+  .students-photo-size {
+
+  }
+  .students-bio {
+    float:right;
+    width: 50%;
+  }
+  #students-intro {
+    margin-top: 100px;
+  }
+  .students-story-1 {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+  }
+  .students-story-1 img {
+    padding-left: 8px;
+    vertical-align: middle;
+  }
+  .students-story-2 {
+    display: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.49;
+  }
+  .students-story-2 img {
+    padding-left: 8px;
+    vertical-align: middle;
+  }
+  #students-section {
+
+  }
+
+  /* Section 7 - Locations
+  * --------------------------------------- */
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+  #locations-title {
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    margin: 30px auto;
+    width: 100%;
+  }
+  #locations-frame {
+    margin: 0 auto;
+  }
+  #locations-section {
+    position: relative;
+  }
+
+  /* Footer
+  * --------------------------------------- */
+  #footer-section {
+    height: auto;
+    margin: 0 auto;
+  }
+  #footer-frame {
+    height: auto;
+    margin: 0 auto;
+    width:75%;
+  }
+  #footer-left {
+    height: auto;
+    float: left;
+    width: 40%;
+    font-size: 14px;
+  }
+  #footer-right {
+    height: auto;
+    float: right;
+    margin-top: 40px;
+  }
+   #footer-top {
+    height: auto;
+    background-color: #526e7c;
+    margin: 0 auto;
+    padding: 30px 0;
+    color: white;
+    overflow: hidden;
+  }
+  #footer-bottom {
+    height: auto;
+    background-color: #384a54;
+    margin: 0 auto;
+    padding: 5px 0;
+    color: white;
+  }
+  #footer-bottom p {
+    font-family: "Arial";
+    font-size: 10px;
+    color: #FFFFFF;
+    line-height: 15px;
+    text-align: center;
+  }
+  .footer-intro h5{
+    font-family: "OpenSans";
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+  }
+  #footer-right-input {
+    font-family: "Arial";
+    font-size: 14px;
+    color: #BBBBBB;
+    width:263px;
+    height:42px;
+    letter-spacing: .4px;
+  }
+  #footer-right-submit {
+    background: rgba(123, 202, 241, .69);
+    border-radius: 2px;
+    border: none;
+    width: 190px;
+    height: 49px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    text-decoration: none;
+    font-family: "Arial";
+    font-size: 14px;
+    letter-spacing: .6px;
+    font-weight: 600;
+  }
+
+  /* Media Queries
+  * --------------------------------------- */
+  @media screen and  (max-width:1440px){
+    .fp-controlArrow.fp-prev {
+      left: 80px;
+    }
+  }
+  @media screen and  (max-width:1366px){
+    .overview-left {
+      width: 38%;
+    }
+  }
+  @media screen and  (max-width:1350px){
+    .section-banner-1 {
+      display:none;
+    }
+    .section-banner-2 {
+      display: block;
+      right: 0px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+    }
+    .section-text {
+      position: relative;
+      margin: 10% 15%;
+      width:400px;
+    }
+  }
+  @media screen and  (max-width:1280px){
+    .overview-div {
+      width: 59%;
+    }
+    .overview-left {
+      width: 37%;
+    }
+
+  }
+  @media screen and  (max-width:1260px){
+    #students-intro {
+      margin-top: 50px;
+      padding-bottom: 30px;
+    }
+    .section-frame {
+      width: 70%;
+    }
+    .section-left {
+      float: none;
+      width: auto;
+      margin-left: auto;
+    }
+    .section-right {
+      float: none;
+      width: 900px;
+    }
+    .students-success-story {
+      width: 49%;
+      display: inline-block;
+    }
+    #students-photo-resize {
+      display:block;
+    }
+    .section h4 {
+      margin: 0;
+    }
+    .students-story-1 {
+      display: none;
+    }
+    .students-story-2 {
+      display: block;
+    }
+    .students-photo-size {
+      width: 185px;
+      height: auto;
+    }
+    .students-more-stories {
+      display:block;
+      margin-bottom:60px;
+      margin-top: 4%;
+    }
+    #overview-slide {
+      background: url(img/overview-main-image-2.png) no-repeat center center;
+      background-size: cover;
+    }
+    .overview-left {
+      display: none;
+    }
+    .overview-response {
+      display: block;
+      float: right;
+    }
+    .overview-div {
+      float:right;
+      margin-right: 75px;
+    }
+    .overview-div-text {
+      width: 500px;
+      margin-top: 20px;
+    }
+  }
+  @media screen and  (max-width:1160px){
+    .section-text {
+      margin: 10% 12%;
+    }
+    .students-more-stories {
+      display:block;
+      margin-bottom:40px;
+      margin-top: 4%;
+    }
+    .students-more-left {
+      float: none;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .students-more-right {
+      float: none;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .students-more-text{
+      width: 250px;
+    }
+    .students-more {
+      height: 420px;
+      overflow-y: scroll !important;
+    }
+  }
+  @media screen and  (max-width:1100px){
+    .section-text {
+      margin: 10% 5%;
+    }
+    .section-frame {
+      width: 90%;
+    }
+    .students-intro {
+      margin: 0 auto;
+    }
+    .fp-controlArrow.fp-prev {
+      left: 10px;
+    }
+    .students-more {
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
+  @media screen and  (max-width:1080px){
+    .overview-response {
+      display: none;
+    }
+    .overview-response-2 {
+      display: block;
+    }
+    .overview-response-2 div {
+      padding: 0;
+    }
+    .overview-div-text{
+      margin-top: 100px;
+    }
+  }
+  @media screen and  (max-width:1040px){
+    #footer-left{
+      width: 60%;
+    }
+    #footer-right input {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+  @media screen and  (max-width:1024px){
+    #students-section {
+      height: 650px !important;
+    }
+    .students-right {
+      height: 500px;
+      overflow-y: scroll !important;
+    }
+    .section-banner-2 {
+      right: -5%;
+    }
+    .students-more-left {
+      width: 80%;
+    }
+    .students-more-right {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 1024px) and (max-height: 600px) {
+    #overview-app {
+      width: 92%;
+    }
+  }
+  @media screen and  (max-width:980px){
+    #education-section {
+      height: auto !important;
+    }
+    #employment-section {
+      height: auto !important;
+    }
+    #organizations-section {
+      height: auto !important;
+    }
+    #accountability-section {
+      height: auto !important;
+    }
+    #students-leroy-slide{
+      height: auto !important;
+    }
+    #students-astrid-slide{
+      height: auto !important;
+    }
+    #students-andrew-slide{
+      height: auto !important;
+    }
+    #students-bernard-slide{
+      height: auto !important;
+    }
+    #students-michelle-slide{
+      height: auto !important;
+    }
+    #students-wonman-slide{
+      height: auto !important;
+    }
+    #students-more-slide {
+      height: auto !important;
+    }
+    .section-banner-2 {
+      display: none;
+    }
+    .section-text {
+      display: none;
+    }
+    .section-mobile {
+      display:block;
+    }
+    .section-mobile-box{
+      display:inline-block;
+    }
+    .section-mobile-img {
+      display:inline-block;
+    }
+    .section-mobile-text {
+      display:block;
+    }
+    .fp-tableCell {
+      vertical-align: inherit;
+    }
+  }
+  @media screen and  (max-width:960px){
+    #students-section {
+      height: 850px !important;
+    }
+    .students-more {
+      height: 600px;
+    }
+    .students-right {
+      margin-left: 40px;
+      height: 600px;
+    }
+    .students-success-story {
+      display:block;
+      width: 70%;
+    }
+    .students-story-1 {
+      display: block;
+    }
+    .students-story-2 {
+      display: none;
+    }
+    .students-photo-size {
+      width: auto;
+    }
+    .students-photo {
+      padding-right: 35px;
+    }
+    .students-bio {
+      float: none;
+      width: auto;
+    }
+    .overview-div-text {
+      right: 100px;
+      margin-top: 50px;
+    }
+    .overview-response-2 {
+      margin-top: 25px;
+    }
+  }
+  @media screen and  (max-width:950px){
+    #overview-app {
+      width:80%;
+    }
+  }
+  @media screen and  (max-width:945px){
+    #footer-left{
+      width: 50%;
+    }
+    #overview-bottom-inner {
+      width: 725px;
+    }
+    #overview-bottom-inner div {
+      padding: 25px 1%;
+    }
+    .overview-div-text {
+      right: 75px;
+      width: 450px;
+    }
+  }
+  @media screen and  (max-width:853px){
+    #overview-slide {
+      background: none;
+      border-top: 10px solid #F8CE76;
+    }
+    .overview-response-2 {
+      display:none;
+    }
+    #overview-response-3 {
+      display: block;
+      margin: 0 auto;
+    }
+    .overview-div-text {
+      width: 70%;
+      margin:25px auto;
+      padding-top: 50px;
+      float: none;
+    }
+    .overview-div {
+      width: 100%;
+      float: none;
+      margin-right: auto;
+    }
+    #overview-bottom-inner {
+      display: none;
+    }
+    #overview-bottom {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 800px) and (max-height: 1280px) {
+    #overview-section {
+      height: 665px !important;
+    }
+  }
+  @media screen and  (max-width:760px){
+    #footer-frame {
+      width:65%;
+    }
+    #footer-left {
+      float:none;
+      width:100%;
+    }
+    #footer-right {
+      margin-top: 0px;
+      float:none;
+    }
+    .students-more-text {
+      width: 200px;
+    }
+    .students-more {
+      width:100%;
+    }
+    .students-right {
+      float: none;
+      width: 80%;
+      margin-top: auto;
+      margin-left: auto;
+      margin: 0 auto;
+    }
+    .students-left {
+      float: none;
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+    .students-pic {
+       margin: auto;
+    }
+    #overview-app-text {
+      display: none;
+    }
+  }
+  @media screen and  (max-height:500px){
+    #overview-app {
+      width: 90%;
+    }
+  }
+  @media screen and  (max-width:700px){
+    .students-success-story {
+      width:60%;
+    }
+    .students-right {
+      height: 480px;
+    }
+    .students-more {
+      height: 400px;
+    }
+  }
+  @media screen and  (max-width:680px){
+    .students-more-onleft {
+      float: none;
+      width: 200px;
+      margin: auto;
+      margin-bottom: 25px;
+    }
+    .students-more-onright {
+      float: none;
+      width: 200px;
+      margin: auto;
+      margin-bottom: 25px;
+    }
+    .students-more-left {
+      width: auto;
+    }
+    .students-more-right {
+      width: auto;
+    }
+    .students-more-text{
+      width: 200px;
+    }
+  }
+  @media screen and  (max-height:650px){
+    .overview-div-text{
+      margin-top: 50px;
+    }
+  }
+  @media screen and  (max-height:500px){
+    .students-left{
+      width: 100%;
+    }
+    .students-right{
+      width: 100%;
+    }
+  }
+  @media screen and  (max-width:587px){
+    #students-section {
+      height: 1350px !important;
+    }
+    .students-more {
+      height: 1000px;
+    }
+    .students-right {
+      height: 950px;
+    }
+    .section-frame {
+      width:70%;
+    }
+    .section-right{
+      width:auto;
+    }
+    .students-success-story {
+      width: 90%;
+      height:auto;
+      margin: 0 auto;
+    }
+    .students-photo{
+      float: none;
+      padding-bottom: 10px;
+      width:100%;
+    }
+    #students-section {
+      overflow: visible;
+    }
+    .students-bio {
+      padding-bottom: 10px;
+    }
+    #footer-frame {
+      width:80%;
+    }
+  }
+  @media screen and  (max-width:500px){
+    #students-section {
+      height: 1500px !important;
+    }
+    .students-more {
+      height: 1100px;
+    }
+    .students-right {
+      width: 90%;
+    }
+  }
+  @media screen and  (max-width:450px){
+    .section-interest-white {
+      display: none;
+    }
+    .section-interest-blue {
+      display: none;
+    }
+  }
+  @media screen and  (max-width:425px){
+    #overview-section {
+      height: 780px !important;
+    }
+  }
+  @media screen and  (max-height:414px){
+    #overview-slide {
+      background: none;
+      border-top: 10px solid #F8CE76;
+    }
+    .overview-response-2 {
+      display:none;
+    }
+    #overview-response-3 {
+      display: block;
+      margin: 0 auto;
+    }
+    .overview-div-text {
+      width: 70%;
+      margin:25px auto;
+      padding-top: 50px;
+    }
+    .overview-div {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 375px){
+    #students-section {
+      height: 1650px !important;
+    }
+      .students-right {
+      height: 1100px;
+    }
+      .students-left {
+      width: 95%;
+    }
+    .overview-div-text {
+      margin-top: 15px;
+    }
+  }
+  @media screen and (max-width: 359px){
+    #overview-app {
+      width: 92%;
+    }
+  }
+  @media screen and (max-width: 320px){
+    .fp-controlArrow {
+      top:59%;
+    }
+  }
+
+  </style>
+
+  </head>
+  <body>
+  	<div id="tech-diversity">
+
+      <div class="section" id="overview-section">
+        <div class="slide" id="overview-slide">
+          <div class="overview-left">
+            <div><img src="img/tech-diversity-logo.png" width="428px" height="130px"/></div>
+            <div><button type="button" id="applytoday">Apply Today</button></div>
+          </div>
+          <div class="overview-div">
+            <div class="overview-response">
+            <div><img src="img/tech-diversity-logo-2.png" width="313px" height="79px"/></div>
+            <div><button type="button" id="applytoday">Apply Today</button></div>
+          </div>
+          <div class="overview-div-text">
+            <img src="img/tech-diversity-logo-2.png" id="overview-response-3" style="width: 100%; height:auto; margin-bottom: 25px;"/>
+            <p>The Tech Diversity Scholarship is the product of a public-private
+            partnership of organizations committed to providing access to technology education for all.
+            The scholarship is designed to remove financial barriers for people who are underrepresented
+            in the technology industry, including but not limited to: women, people of color, military
+            personnel and people with disabilities. Financially-eligible students will be considered and
+            may be eligible to receive a full-ride scholarship to attend a full-time code school and take
+            the first step toward a fulfilling career in technology.</p>
+            <div id="overview-response-3"><button type="button" id="applytoday">Apply Today</button></div>
+            <div class="overview-response-2">
+              <div><img src="img/tech-diversity-logo-2.png" width="313px" height="79px" style="float:right;"/></div>
+              <div><button type="button" style="float:right;" id="applytoday">Apply Today</button></div>
+            </div>
+          </div>
+          </div>
+          <div id="overview-bottom">
+            <div id="overview-bottom-inner">
+              <div><img src="img/wsj-logo.png"/></div>
+              <div><img src="img/white-house-logo.png"/></div>
+              <div><img src="img/nbc-logo.png"/></div>
+              <div><img src="img/fastco-logo.png"/></div>
+              <div><img src="img/cnn-logo.png"/></div>
+              <div><img src="img/atlantic-logo.png"/></div>
+              <div><img src="img/abc-logo.png"/></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="overview-app-border">
+          <div id="overview-app">
+            <div><h1>Apply for the Tech Diversity Scholarship</h1><p>
+              <p id="overview-app-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <div><form method="post" action="">
+              <label for="name"><strong>Your Name*:</strong>
+              </label>
+              <input type="text" style="" aria-required="true" required="required" name="realname" id="realname" placeholder=""><p>
+              <label for="email"><strong>Your E-mail Address*:</strong>
+              </label>
+              <input type="email" style="" required="required" aria-required="true" id="email" name="email" placeholder=""><p>
+              <label class="desc" for="number"><strong>Phone Number*</strong></label>
+              <span><input class="field text" maxlength="3" size="3" tabindex="3" type="tel" value="" required=""></span>
+              <span><input class="field text" maxlength="3" size="3" tabindex="4" type="tel" value="" required=""></span>
+              <span><input class="field text" maxlength="4" size="4" tabindex="5" type="tel" value="" required=""></span><p>
+              <label for="Inquiry"><strong>Tell us how you'll support diversity by making technology more open and available to underrepresented groups.</strong>:</label>
+              <textarea style="display:block; width: 95%; margin:auto;" rows="7" required="required" aria-required="true" wrap="soft" id="Inquiry" name="Inquiry" placeholder=""></textarea>
+              <br>
+              <button type="submit">Submit Form</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="students-section">
+        <div class="slide">
+          <div class="section-frame">
+            <div class="section-left" id="students-intro"><h1>Student Success Stories</h1><p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                 nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                 deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="section-right">
+                <div class="students-success-story">
+                  <div class="students-photo">
+                  <img class="section-img students-photo-size" id="leroy-story" data-src="img/leroy-story.png" onload="this.style.opacity='1';" />
+                  <p class="students-story-2" id="leroy-story">Read LeRoy's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                  <div class="students-bio">
+                  <h4>Web Developer</h4>
+                  <h3>LeRoy Gardner</h3>
+                  <p>As an Officer in the Navy Reserve in Afghanistan, LeRoy spent his free time trying to learn to code.</p>
+                  <p class="students-story-1" id="leroy-story">Read LeRoy's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                </div>
+                <div class="students-success-story">
+                  <div class="students-photo">
+                  <img class="section-img students-photo-size" id="astrid-story" data-src="img/astrid-story.png"onload="this.style.opacity='1';" />
+                  <p class="students-story-2" id="astrid-story">Read Astrid's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                  <div class="students-bio">
+                  <h4>Mobile Developer</h4>
+                  <h3>Astrid Countee</h3>
+                  <p>Astrid was a data analyst working in oil and gas and decided to pursue her passion for building software.</p>
+                  <p class="students-story-1" id="astrid-story">Read Astrid's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" id="students-more-slide">
+          <div class="section-frame">
+            <div class="students-more-stories">
+              <h1>More Student Stories</h1><p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+            </div>
+            <div class="students-more">
+              <div class="students-more-left">
+                <div class="students-more-onleft">
+                  <img class="section-img" id="andrew-story" data-src="img/andrew-story.png" onload="this.style.opacity='1';" />
+                <div class="students-more-text">
+                  <h4>Mobile Developer</h4>
+                  <h3>Andrew El-Masry</h3>
+                  <p>Andrew switched majors several times in college before finding his stride in programming.</p>
+                  <p id="andrew-story">Read Andrew's full story <img src="img/arrow-blue.png"/></p>
+                </div>
+                </div>
+                <div class="students-more-onright">
+                  <img class="section-img" id="bernard-story" data-src="img/bernard-story.png" onload="this.style.opacity='1';" />
+                  <div class="students-more-text">
+                    <h4>Web Developer</h4>
+                    <h3>Bernard Worthy</h3>
+                    <p>Bernard was on a leadership track with a major retailer when he decided to learn to code. </p>
+                    <p id="bernard-story">Read Bernard's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                </div>
+              </div>
+              <div class="students-more-right">
+                <div class="students-more-onleft">
+                    <img class="section-img" id="michelle-story" data-src="img/michelle-story.png" onload="this.style.opacity='1';" />
+                  <div class="students-more-text">
+                    <h4>Web Designer</h4>
+                    <h3>Michelle Child</h3>
+                    <p>Michelle went from teaching in a foreign country to following her passion for design.</p>
+                    <p id="michelle-story">Read Michelle's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                </div>
+                <div class="students-more-onright">
+                  <img class="section-img" id="wonman-story" data-src="img/wonman-story.png" onload="this.style.opacity='1';" />
+                  <div class="students-more-text">
+                    <h4>Mobile Developer</h4>
+                    <h3>Wonman Lee</h3>
+                    <p>Wonman used to work for a Senator on Capitol Hill. He now works as a back-end developer.</p>
+                    <p id="wonman-story">Read Wonman's full story <img src="img/arrow-blue.png"/></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="students-leroy-slide">
+          <div class="section-frame">
+            <div class="students-left">
+                <div class="students-pic">
+                <div><img class="section-img" data-src="img/leroy-story.png" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like LeRoy's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">LeRoy Gardner</h1><p><h6 style="margin-top:0px;">Web Developer</h6><p>
+              <p>Throughout his 10-month deployment, LeRoy’s main job was to advise the General of the Afghan National Police on recruiting, retention, training and strategy. During the handful of hours when he wasn’t donning body armor, magazines, weapons and a helmet, LeRoy was glued to his Macbook, trying to teach himself to code using online tutorials.</p>
+              <p>He’d been interested in coding for years and had learned some of the basics, but soon became frustrated. “I didn’t give in, but I realized the process needed to change,” he said. Sitting in front of his computer in Kabul one night, LeRoy got stuck with a Ruby problem and reached out to Jesse Wolgamott, Back End engineering instructor at The Iron Yard’s Houston campus, for help.</p>
+              <p>At the time, LeRoy had no intention of applying to The Iron Yard – he just needed advice and sought help from a fellow Houston-ite. Jesse answered that day with an explanation of how to fix the error. Though he was appreciative of Jesse’s response, the tone of the email caught LeRoy’s attention. “That email was a harbinger of things to come. I just knew that I had to commit to learning full-time, with something to lose to make it meaningful<span style="">Tutorials simply felt a bit like a dalliance,” he explained LeRoy talked to his wife, applied for The Iron Yard’s Back End Engineering with Ruby on Rails course, and was accepted.</span></p>
+              <p>He began class soon after returning home from Kabul in January 2015. "Learning [at The Iron Yard] doesn’t happen in a vacuum. These dudes don’t know it, but they’ve helped me a bunch along the way — there were times when I thought I wouldn’t solve an issue. StackOverflow, Google and all the interwebs hadn’t helped. But my buddies did.&nbsp;<span style="">Overall this experience has been what I needed to get where I wanted. Period. I am getting to where I wanted to be. I am getting to where I saw myself. What is that worth to me? Much."</span></p>
+              <p>After graduation, LeRoy immediately jumped into an apprenticeship with Stackwave in Houston, where he is now focused on training in Front End Engineering. He’s still in touch with his cohort peers, who lean on each other when they need support as they launch into new careers. LeRoy described the camaraderie eloquently: “we all were seeking to create something, make something real and see it exist in the world. I think the skills and tools are simply a means to solve problems and create.” </p>
+              <p>LeRoy says he is passionate about working with customers to see a vision come to life. He loves solving problems through web applications, making brands stronger with solid design, and watching clients get excited about his work. "The skills I’ve learned and continue to develop have helped change the trajectory of options I have available," he said.</p>
+              </div>
+            </div>
+        </div>
+        <div class="slide" id="students-astrid-slide">
+          <div class="section-frame">
+            <div class="students-left">
+              <div class="students-pic">
+                <div><img class="section-img" data-src="img/astrid-story.png" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like Astrid's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">Astrid Countee</h1><p><h6 style="margin-top:0px;">Mobile Developer</h6><p>
+              <p>I feel so privileged to be at this place in my life. I feel so blessed
+                to have had this experience. In a way, being able to be employed as a software
+                developer is the least important aspect of this journey. The best part has been
+                the person that I have become in the process. I believe in myself more, and I participate
+                in life more, and I can see so much opportunity that before was invisible to me. I feel like
+                I am crafting my kind of life, where I can do the things that I love, and make a living doing it.
+                I plan to do that by getting more women like me involved, and helping to teach more people
+                to code. How many ways can you say your grateful? I feel like I may never stop.</p>
+               <p>In many ways I hate to see this part of my life end, but I am so looking forward to where I go
+                 from here. I have a feeling that instead of an ending, I am experiencing and expansion, and that
+                 somehow all of this will just keep growing and changing. I hope that we all stay connected along
+                 the way, cause I already miss these guys so much.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="students-andrew-slide">
+          <div class="section-frame">
+            <div class="students-left">
+              <div class="students-pic">
+                <div><img class="section-img" data-src="img/andrew-story.png" style="width:222px; height:auto;" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like Andrew's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">Andrew El-Masry</h1><p><h6 style="margin-top:0px;">Mobile Developer</h6><p>
+              <p>I was born in America, and my parents are Egyptian with a Middle Eastern mentality. For them, life is defined by three professions: doctor, lawyer or engineer. If you weren’t one of those, you were just average. So I tried to follow in my brother Peter’s footsteps and went into pre-med. Eventually, I came home to my mom and said, “mom, I can’t do this. It’s not me.” </p>
+              <p>I have always loved that idea that technology is there for the good of mankind. It really helps us and makes our lives easier when we don’t even know it. I fell in love with that idea of the human telling the computer what to do. I switched to Computer Science and I just loved it. I was in my Java II class (at Kennesaw State University) and somebody next to me was talking about a coding program called The Iron Yard. He was telling me all these things that I just did not believe, like they train you for three months, and at the end they give you the skills and experience to get a job. I was intrigued! So, I looked into it, talked to my mom and decided to give it a try.</p>
+              <p>At that point, I had switched majors a few times and I wanted to take a break. I took a semester off to try The Iron Yard. I could tell in the first interview with The Iron Yard that they really are interested in each individual and in his/her capabilities. Tim Whitacre [Front-End Instructor] was just a real man and I respect him very much. Once I started class, everybody was just so kind and willing to help each other. It was that type of environment where we all wanted to work together and not compete at all. </p>
+              <p>After week two, the class really picked up and became more difficult. But even in those moments, I could rely on the people around me and my instructor helped me every step of the way. It was more about learning to solving a problem, not focusing on the problem. That practice of solving problems can be applied to so many concepts in life, not just in coding. </p>
+              <p>I always knew I wanted to deal with Java, because my first phone was a G1 and I fell in love with that offering. When I was in school, I fiddled around with small Android applications here and there in my Java II class. What The Iron Yard gave me was the gift and the capability to learn concepts of a language and to better understand the functions of each language. </p>
+              <p>After graduation, I went back to Java after learning JavaScript with a whole new mindset. I was able to pick up concepts just like that. Being able to do it yourself, live it and apply it. That is what The Iron Yard gave me. </p>
+              <p>Someone from the department of Biomedical Informatics at Emory who had attended our Demo Day presentation contacted me a couple of weeks afterward and asked if I would be willing to come in for an interview for a mobile engineering position. Even though I was still junior level in Java, he gave me a chance. </p>
+              <p>Now, I am honestly working at the best job of my life, with the best cause in the world. My job is to develop mobile health applications for people in remote villages that don’t have access to health care in areas of Guatemala and other isolated areas in third world countries.</p>
+              <p>The specific application that I am working on right now is an Android application that hooks up to ultrasound devices. It helps midwives who are taking care of pregnant women. Most of them are unable to read, so I had to tailor this application for them. It is very vocal and visual, with audible instructions. </p>
+              <p>It’s really ironic that I was pre-med and I still somehow ended up in the medical field, not as a doctor but as a developer. Now, I’m finishing my bachelor’s degree online, and at the same time doing a job I love.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="students-bernard-slide">
+          <div class="section-frame">
+            <div class="students-left">
+              <div class="students-pic">
+                <div><img class="section-img" data-src="img/bernard-story.png" style="width:222px; height:auto;" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like Bernard's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">Bernard Worthy</h1><p><h6 style="margin-top:0px;">Web Developer</h6><p>
+              <p>After graduating college with a business degree, Bernard was on the management fast-track with a major retailer for three years before he realized his desire&nbsp;for more was not going to disappear. He had a good job and a wonderful&nbsp;fiancée, but he couldn’t stop thinking about his interest in entrepreneurship and whether there was something more for him and his family.&nbsp;</p>
+              <p>Bernard moved to Durham, N.C. to help with a church plant and immerse himself in the startup scene. He took a few months off of work and dedicated himself to meeting people within the industry, talking to entrepreneurs and testing whether the life of an entrepreneur was for him.</p>
+              <p>He came up with ideas and worked through every area of entrepreneurship, from understanding VC to working with attorneys, understanding formations, etc. He soon realized that if he was to be successful, he needed to be right in the “nitty gritty” of development. “Why don’t I just learn how to do it?” he thought.</p>
+              <p>He started working through some coding tutorials and doing a bit of freelance graphic design work on the side. He even decided to build an app. “You can do tutorials until you are blue in the face, but until you go through whole cycle of building software, you don’t really understand how it all works together,” he said. He wanted to find out whether he really wanted to do this work daily.</p>
+              <p>It was just a lot of fun, to kind of have the idea, work the business model and plan, and then actually start to tackle development myself.</p>
+              <p>During those few months, Bernard and his wife considered whether a full-time code school was the logical next step. They thought about moving to a larger city, but landed on staying in Durham to attend The Iron Yard. “Because The Iron Yard was one of the leaders in the space, I had no reason to go to California, or New York, or DC to get the same experience,” he said.</p>
+              <p>I really understood the power of what a network can do for you, and I think that going to the school where you want to live is not just as important, but the biggest thing that you should be deciding, I think right up there with the instructor. The instructor is probably most important, but then you go into a school where you most want to have your career.</p>
+              <p>Within three weeks of starting his cohort, Bernard knew it was the right choice for him. “I knew this would the kind of the school that would get me into this network that I have been trying to dive into.” &nbsp;</p>
+              <p>Coming into the course, Bernard’s main concern was that he wanted it to be rigorous enough. Since he had some experience, he was looking for a real challenge. “I wanted to be able to really work with a development company immediately. That was my biggest concern: How rigorous the curriculum would be and the pace of the class.” He had many&nbsp;conversations with his instructor Chris before class began about how he could adjust the curriculum to meet his individual needs. “Chris provided me&nbsp;with opportunities and modified some assignments so that those of us who were more accelerated had that challenge,” he said.&nbsp;</p>
+              <p>One of the companies Bernard first connected with when he moved to Durham was a well-known development consultancy called CrossComm. Bernard had pitched them a startup idea and they struck up a relationship, often bumping into one another at American Underground while Bernard was freelancing. When he told a few of them that he was joining The Iron Yard, they told him to keep in touch about opportunities for a development job. After he graduated, Bernard officially joined the CrossComm team. “It has been awesome so far. On&nbsp;my very first day, I was working on an app for Forbes. We are building their “Thirty Under Thirty” app this year, which is really, really cool,” he said.</p>
+              <p>The very first day I was doing something I did not learn at The Iron Yard, but because of The Iron Yard I felt comfortable enough to tackle it. It was a cool thing, because I came into The Iron Yard with a lot of other skills, so then it really equipped me with the programming acumen to be able to tackle the kind of jobs that I wanted to be in.</p>
+              <p>Bernard is continuing to work on his entrepreneurial ventures on the side. He plans to launch&nbsp;<a href="https://hackstarter.com/">Hackstarter</a>, a crowdfunding site for students to raise money for coding bootcamps, in January 2016. “As a software&nbsp;developer, you fail everyday, hundreds of times. Especially when you are learning, and that was really hard for me. The cool part is, you see growth pretty quickly in software development. You are learning new stuff all the time, and once you kind of understand the core concepts, you can pick up new things pretty quickly.”</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="students-michelle-slide">
+          <div class="section-frame">
+            <div class="students-left">
+              <div class="students-pic">
+                <div><img class="section-img" data-src="img/michelle-story.png" style="width:222px; height:auto;" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like Michelle's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">Michelle Child</h1><p><h6 style="margin-top:0px;">Web Designer</h6><p>
+              <p>Before attending The Iron Yard, I worked as an English Assistant in a small French town near Dijon. When I came home, I had no idea what to do next. A friend suggested I look into The Iron Yard. </p>
+              <p>After reviewing their site, I instantly clicked with the design material and self-motivated, fast-paced environment they presented. I was enthralled with the idea of learning a new skill and making a career in interface design. </p>
+              <p>Throughout the class I was constantly challenged, inspired, and confident I was on the forefront of design/code education, learning from extremely talented people. It's such an exciting time to enter the industry! </p>
+              <p>Within a month of finishing the course I was offered a job by a company familiar with the quality education of The Iron Yard. I'm teaching myself new, marketable skills every day, and couldn't be more excited to spend my career as a designer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="students-wonman-slide">
+          <div class="section-frame">
+            <div class="students-left">
+              <div class="students-pic">
+                <div><img class="section-img" data-src="img/wonman-story.png" style="width:222px; height:auto;" onload="this.style.opacity='1';" /></div>
+                <div><p id="students-home"><img src="img/back-arrow-blue.png"/> Read More Stories like Wonman's</p></div>
+              </div>
+            </div>
+            <div class="students-right"><h1 style="margin-bottom:0px;">Wonman Lee</h1><p><h6 style="margin-top:0px;">Mobile Developer</h6><p>
+              <p>Before The Iron Yard, I&nbsp;was a systems administrator on the Hill. Random fun fact: My&nbsp;coworkers used to refer to me&nbsp;as&nbsp;Nick Burns on SNL.&nbsp;I&nbsp;spent 2014 knocking on doors in Alaska working on Senator Mark Begich’s re-election.</p>
+              <p>With the Senator’s loss in the November election, I&nbsp;found myself without a job.</p>
+              <p>President Obama and Su Kim, the Campus Director. Both deserve credit. President Obama has given countless speeches expounding on the need for more American workers skilled in STEM fields. Moving into the software field was always a goal of mine but I wasn’t able to learn efficiently while studying on my own.</p>
+              <p>A bootcamp however fit my learning style and my current status of being unemployed perfectly.</p>
+              <p>I feel like I am now equipped with the proper tools to create things. They may be rudimentary currently but with practice I feel like I can hone them to create professional and valuable apps that can create change.</p>
+              <p>One of the great strengths of software is its ability to scale everything and I’m hoping to take advantage of that in the future.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="education-section">
+        <div class="section-text" id="white">
+          <h4>The Commitment:</h4>
+          <h1>Education Partners</h1>
+          <p>The schools participating in this effort are committing—with the support of both
+             private companies and the government—to reserve spots in in every class for those
+              underrepresented in tech, who might not be able to study at a code school otherwise.
+              For The Iron Yard, that’s over 1300 students and $18 million in scholarships over three years. </p>
+          <div class="section-logo-block">
+             <div><img src="img/tiy-logo.png"/></div>
+             <div><img src="img/hack-reactor-logo.png"/></div>
+             <div><img src="img/code-fellows-logo.png"/></div>
+          </div>
+          <div class="section-interest-white">Interested in becoming an Education Partner? <img src="img/arrow-white.png"/></div>
+        </div>
+        <div class="section-mobile">
+          <div class="section-mobile-img"><img data-src="img/education-main-full.png" onload="this.style.opacity='1';" /></div>
+          <div class="section-mobile-box">
+          <div class="section-mobile-text" id="white">
+            <h4>The Commitment:</h4>
+            <h1>Education Partners</h1>
+            <p>The schools participating in this effort are committing—with the support of both
+               private companies and the government—to reserve spots in in every class for those
+                underrepresented in tech, who might not be able to study at a code school otherwise.
+                For The Iron Yard, that’s over 1300 students and $18 million in scholarships over three years. </p>
+            <div class="section-interest-white">Interested in becoming an Education Partner? <img src="img/arrow-white.png"/></div>
+          </div>
+          </div>
+        </div>
+        <img class="section-banner-1" data-src="img/education-main-image.png" onload="this.style.opacity='1';"/>
+        <img class="section-banner-2" data-src="img/education-main-image-2.png" onload="this.style.opacity='1';"/>
+      </div>
+
+      <div class="section" id="employment-section">
+        <div class="section-text">
+          <h4>The Commitment:</h4>
+          <h1>Employment Partners</h1>
+          <p>Companies participate in a variety of ways, from contributing financially
+            towards scholarships to supporting the in-class experience and, most importantly,
+             building hiring and apprenticeship programs for scholarship recipients.</p>
+           <div class="section-logo-block">
+            <div><img src="img/google-logo.png"/></div>
+            <div><img src="img/home-depot-logo.png"/></div>
+            <div><img src="img/microsoft-logo.png"/></div>
+          </div>
+          <div class="section-logo-block">
+            <div><img src="img/att-logo.png"/></div>
+            <div><img src="img/bmw-logo.png"/></div>
+            <div><img src="img/ibm-logo.png"/></div>
+          </div>
+            <div class="section-interest-blue">Interested in becoming an Employment Partner? <img src="img/arrow-blue.png"/></div>
+        </div>
+        <div class="section-mobile">
+          <div class="section-mobile-img"><img data-src="img/employment-main-full.png" onload="this.style.opacity='1';"/></div>
+          <div class="section-mobile-box">
+          <div class="section-mobile-text">
+            <h4>The Commitment:</h4>
+            <h1>Employment Partners</h1>
+            <p>Companies participate in a variety of ways, from contributing financially
+              towards scholarships to supporting the in-class experience and, most importantly,
+               building hiring and apprenticeship programs for scholarship recipients.</p>
+            <div class="section-interest-blue">Interested in becoming an Employment Partner? <img src="img/arrow-blue.png"/></div>
+          </div>
+          </div>
+        </div>
+        <img class="section-banner-1" data-src="img/employment-main-image.png" onload="this.style.opacity='1';"/>
+        <img class="section-banner-2" data-src="img/employment-main-image-2.png" onload="this.style.opacity='1';"/>
+      </div>
+
+      <div class="section" id="organizations-section">
+        <div class="section-text" id="white">
+          <h4>The Commitment:</h4>
+          <h1>The Support Organizations</h1>
+          <p>The White House has endorsed this program and encourages as many cities as possible
+            to participate. In each city where these scholarships are offered we partner with local
+             government (Mayors, economic development offices and workforce development offices) and state
+            government (Governors, statewide economic and workforce offices) to identify possible participants,
+            create awareness and partner with existing programs working to accomplish the same goals. </p>
+          <div class="section-logo-block">
+           <div><img src="img/white-house-logo-2.png"/></div>
+           <div><img src="img/anita-borg-logo.png"/></div>
+           <div><img src="img/nclr-logo.png"/></div>
+          </div>
+          <div class="section-interest-white">Interested in becoming a Support Organization? <img src="img/arrow-white.png"/></div>
+        </div>
+        <div class="section-mobile">
+          <div class="section-mobile-img"><img data-src="img/org-main-full.png" onload="this.style.opacity='1';"/></div>
+          <div class="section-mobile-box">
+          <div class="section-mobile-text"  id="white">
+            <h4>The Commitment:</h4>
+            <h1>The Support Organizations</h1>
+            <p>The White House has endorsed this program and encourages as many cities as possible
+              to participate. In each city where these scholarships are offered we partner with local
+               government (Mayors, economic development offices and workforce development offices) and state
+              government (Governors, statewide economic and workforce offices) to identify possible participants,
+              create awareness and partner with existing programs working to accomplish the same goals. </p>
+                <div class="section-interest-white">Interested in becoming a Support Organization? <img src="img/arrow-white.png"/></div>
+          </div>
+          </div>
+        </div>
+          <img class="section-banner-1" data-src="img/org-main-image.png" onload="this.style.opacity='1';"/>
+          <img class="section-banner-2" data-src="img/org-main-image-2.png" onload="this.style.opacity='1';"/>
+      </div>
+
+      <div class="section" id="accountability-section">
+        <div class="section-text">
+          <h4>The Commitment:</h4>
+          <h1>Accountability</h1>
+          <p>The outcomes of the scholarship program will be audited by a third party.
+            This will enable the Tech Diversity Scholarship program to be transparent
+            with all of the outcome data. The goal is to always be focused on the best
+            interest of the students, not special interests.</p>
+            <div class="section-logo-block">
+              <div><img src="img/skills-fund-logo.png"/></div>
+            </div>
+        </div>
+        <div class="section-mobile">
+          <div class="section-mobile-img"><img data-src="img/acc-main-full.png" onload="this.style.opacity='1';" /></div>
+          <div class="section-mobile-box">
+          <div class="section-mobile-text">
+            <h4>The Commitment:</h4>
+            <h1>Accountability</h1>
+            <p>The outcomes of the scholarship program will be audited by a third party.
+              This will enable the Tech Diversity Scholarship program to be transparent
+              with all of the outcome data. The goal is to always be focused on the best
+              interest of the students, not special interests.</p>
+          </div>
+          </div>
+        </div>
+        <img class="section-banner-1" data-src="img/acc-main-image.png" onload="this.style.opacity='1';"/>
+        <img class="section-banner-2" data-src="img/acc-main-image-2.png" onload="this.style.opacity='1';" />
+      </div>
+
+      <div class="section" id="locations-section">
+        <div id="map">
+          <div id="locations-frame">
+            <h1 id="locations-title">Cities and Partners</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="section fp-auto-height" id="footer-section">
+        <div id="footer-top">
+          <div id="footer-frame">
+            <div class="footer-intro" id="footer-left">
+              <h5>Stay in the Loop</h5><p>Sign up for the Tech Diversity Scholarship
+              email list for announcements, new partners, and city additions.
+            </div>
+            <div id="footer-right">
+              <input type="text" name="mail" value="Email Address" id="footer-right-input">
+              <input type="submit" value="Submit Email" id="footer-right-submit">
+            </div>
+          </div>
+        </div>
+        <div id="footer-bottom">
+              <p>Copyright © 2016 Tech Diversity Scholarship</p>
+              <p>Privacy | Terms of Service </p>
+        </div>
+      </div>
+
+    </div>
+    <script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGVjaGRpdmVyc2l0eSIsImEiOiJjaW1nZDl3NmUwMXk4dmdtNnpzbDlxZTRvIn0.5MyuGabE9Vfuvju-gvbUGw';
+  var map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/techdiversity/cimgdbkx5001a9llvsu473mij', //stylesheet location
+      center: [-98.68, 40.96],
+         zoom: 3.3,
+         // causes pan & zoom handlers not to be applied, similar to
+         // .dragging.disable() and other handler .disable() funtions in Leaflet.
+         interactive: false
+     });
+  </script>
+
+  </body>
+  </html>
