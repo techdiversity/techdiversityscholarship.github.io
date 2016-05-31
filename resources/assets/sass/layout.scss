@@ -101,6 +101,17 @@ p{
 	}
 }
 
+.overview {
+	.split-container-flex {
+		@include breakpoint(tablet) {
+			padding-left: 100px;
+		}
+
+		@include breakpoint(desktop) {
+			padding-left: 15px;
+		}
+	}
+}
 
 .container-flex {
 	height: 100%;

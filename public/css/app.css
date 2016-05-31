@@ -6239,7 +6239,8 @@ table {
       display: none; } }
 
 .btn-desktop {
-  display: none; }
+  display: none;
+  margin: 30px 114px 0 0px; }
   @media (min-width: 768px) {
     .btn-desktop {
       display: -ms-flexbox;
@@ -6511,6 +6512,13 @@ input.btn {
   .slick-dots .slick-active button {
     background: #546b79; }
 
+@media (min-width: 480px) {
+  .slick-carousel {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; } }
+
 /* Reset CSS
  * --------------------------------------- */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
@@ -6567,7 +6575,8 @@ h1 {
 p {
   font-size: 1.2em;
   line-height: 1.2em;
-  text-align: left; }
+  text-align: left;
+  font-weight: bold; }
 
 .content {
   /*position: relative;
@@ -6600,6 +6609,14 @@ p {
 @media (min-width: 1600px) {
   .overview .container {
     width: 1500px; } }
+
+@media (min-width: 768px) {
+  .overview .split-container-flex {
+    padding-left: 100px; } }
+
+@media (min-width: 1200px) {
+  .overview .split-container-flex {
+    padding-left: 15px; } }
 
 .container-flex {
   height: 100%;
@@ -6699,8 +6716,11 @@ html.fp-enabled,
 .fp-controlArrow.fp-prev {
   transition: opacity 250ms ease;
   opacity: 1;
-  left: 70px;
+  left: 0;
   font-family: 'Glyphicons Halflings'; }
+  @media (min-width: 768px) {
+    .fp-controlArrow.fp-prev {
+      left: 70px; } }
   .fp-controlArrow.fp-prev:focus, .fp-controlArrow.fp-prev:hover {
     opacity: 0.8; }
   .fp-controlArrow.fp-prev:before {
@@ -6711,8 +6731,11 @@ html.fp-enabled,
 .fp-controlArrow.fp-next {
   transition: opacity 250ms ease;
   opacity: 1;
-  right: 70px;
+  right: 26px;
   font-family: 'Glyphicons Halflings'; }
+  @media (min-width: 768px) {
+    .fp-controlArrow.fp-next {
+      right: 70px; } }
   .fp-controlArrow.fp-next:focus, .fp-controlArrow.fp-next:hover {
     opacity: 0.8; }
   .fp-controlArrow.fp-next:before {
@@ -6934,8 +6957,10 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
     width: 100%; }
     .featured.student-feature-two.visible .content-image img {
       width: 200px;
-      height: 200px;
-      float: left; }
+      height: 200px; }
+      @media (min-width: 480px) {
+        .featured.student-feature-two.visible .content-image img {
+          float: left; } }
   .featured.student-feature-two.visible .content-info {
     width: 100%;
     padding-right: 5em;
@@ -6977,26 +7002,26 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 
 .fp-prev {
   visibility: hidden; }
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     .fp-prev {
       transition: opacity 250ms ease;
       visibility: hidden;
       opacity: 0; } }
 
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .fp-prev.visible {
     visibility: visible;
     opacity: 1; } }
 
 .fp-next {
   visibility: hidden; }
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     .fp-next {
       transition: opacity 250ms ease;
       opacity: 0;
       visibility: hidden; } }
 
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .fp-next.visible {
     visibility: visible;
     opacity: 1; } }
@@ -7106,24 +7131,24 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   @media (min-width: 480px) {
     .overview .section-split {
       padding-top: 2em;
-      padding-bottom: 2em; } }
+      padding-bottom: 2em;
+      -ms-flex-pack: start;
+      justify-content: flex-start; }
+      .overview .section-split .section-content {
+        -ms-flex-align: start;
+        align-items: flex-start; } }
   @media (min-width: 1200px) {
     .overview .section-split {
-      padding: 0;
-      padding-bottom: 100px; } }
+      padding: 0; } }
 
 .overview .section-split + .section-split {
   padding-top: 0; }
   @media (min-width: 480px) {
     .overview .section-split + .section-split {
-      padding-top: 2em;
-      padding-bottom: 120px; } }
+      padding-top: 2em; } }
   @media (min-width: 768px) {
     .overview .section-split + .section-split {
       padding-bottom: 0; } }
-  @media (min-width: 1200px) {
-    .overview .section-split + .section-split {
-      padding-bottom: 120px; } }
 
 .section-split {
   display: -ms-flexbox;
@@ -7155,7 +7180,7 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
       .section-split + .section-split {
         width: 60%; }
         .section-split + .section-split p {
-          padding-left: 20%; } }
+          padding-left: 25%; } }
 
 .section-first {
   -ms-flex-order: 1;
@@ -7193,10 +7218,12 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   @media (min-width: 768px) {
     .slide-overlay {
       display: block;
-      min-width: 300px; } }
+      min-width: 300px;
+      width: 33.333333333%; } }
   @media (min-width: 1200px) {
     .slide-overlay {
-      min-width: 400px; } }
+      min-width: 400px;
+      width: 25%; } }
   .slide-overlay:before {
     content: "";
     width: 0;
@@ -7218,6 +7245,35 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
     @media (min-width: 1500px) {
       .slide-overlay.right {
         right: 0; } }
+  .slide-overlay.left {
+    left: 0;
+    right: auto;
+    background-color: #526c79;
+    width: 33.333333333%; }
+    .slide-overlay.left.employment {
+      background-color: #f2f2f2; }
+      .slide-overlay.left.employment:before {
+        border-bottom: 115vh solid #f2f2f2; }
+    .slide-overlay.left.accountability {
+      background-color: #f8cf77; }
+      .slide-overlay.left.accountability:before {
+        border-bottom: 115vh solid #f8cf77; }
+    .slide-overlay.left.education {
+      background-color: #9ab7c5; }
+      .slide-overlay.left.education:before {
+        border-bottom: 115vh solid #9ab7c5; }
+    .slide-overlay.left:before {
+      content: "";
+      width: 0;
+      height: 0;
+      right: -100vh;
+      position: absolute;
+      border-bottom: 115vh solid #526c79;
+      border-right: 100vh solid transparent;
+      left: auto;
+      border-top: none;
+      top: 0;
+      bottom: 0; }
 
 .full-student-bio {
   padding: 1em 0; }
@@ -7273,17 +7329,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
     .section-dash {
       background: url("../images/backgrounds/education/education-bg.png");
       background-size: cover;
-      background-position: 200px 0px;
+      background-position: right;
       background-repeat: no-repeat; } }
-  @media (min-width: 992px) {
-    .section-dash {
-      background-position: 300px 0px; } }
-  @media (min-width: 1200px) {
-    .section-dash {
-      background-position: 400px 0px; } }
-  @media (min-width: 1500px) {
-    .section-dash {
-      background-position: 600px 0px; } }
   .section-dash .split-container-flex {
     -ms-flex-pack: center;
     justify-content: center;
@@ -7293,8 +7340,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   .section-dash .section-sponsers {
     margin-top: 2em;
     width: 100%;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
     display: none;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
@@ -7308,10 +7355,10 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   .section-dash .section-sponser-image {
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
     width: 33%;
     margin-bottom: 1em; }
   .section-dash .section-content {
@@ -7334,7 +7381,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   .section-dash .section-content h1 {
     font-size: 2em;
     color: #fff;
-    margin-top: 0em; }
+    margin-top: 0em;
+    font-weight: 700; }
     @media (min-width: 768px) {
       .section-dash .section-content h1 {
         margin-top: 1em; } }
@@ -7369,17 +7417,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
       #section3 .section-dash {
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: 200px 0px;
+        background-position: right;
         background-image: url("../images/backgrounds/employment/employment-bg.png"); } }
-    @media (min-width: 992px) {
-      #section3 .section-dash {
-        background-position: 250px 0px; } }
-    @media (min-width: 1200px) {
-      #section3 .section-dash {
-        background-position: 400px 0px; } }
-    @media (min-width: 1500px) {
-      #section3 .section-dash {
-        background-position: 500px 0px; } }
 
 #section4 {
   background: #526c79; }
@@ -7391,17 +7430,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
       #section4 .section-dash {
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: 200px 0px;
-        background-image: url("../images/backgrounds/organizations/organizations-bg.png"); } }
-    @media (min-width: 992px) {
-      #section4 .section-dash {
-        background-position: 250px 0px; } }
-    @media (min-width: 1200px) {
-      #section4 .section-dash {
-        background-position: 400px 0px; } }
-    @media (min-width: 1500px) {
-      #section4 .section-dash {
-        background-position: 500px 0px; } }
+        background-image: url("../images/backgrounds/organizations/organizations-bg.png");
+        background-position: right; } }
 
 #section5 {
   background: #f8cf77; }
@@ -7413,17 +7443,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
       #section5 .section-dash {
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: 200px 0px;
+        background-position: right;
         background-image: url("../images/backgrounds/accountability/accountability-bg.png"); } }
-    @media (min-width: 992px) {
-      #section5 .section-dash {
-        background-position: 250px 0px; } }
-    @media (min-width: 1200px) {
-      #section5 .section-dash {
-        background-position: 400px 0px; } }
-    @media (min-width: 1500px) {
-      #section5 .section-dash {
-        background-position: 500px 0px; } }
 
 #section7 {
   background: #526c79;

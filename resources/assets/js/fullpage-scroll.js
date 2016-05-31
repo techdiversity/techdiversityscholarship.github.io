@@ -54,7 +54,7 @@
         	        slidesToScroll: 1,
         	        responsive: [
         	            {
-        	                breakpoint: 767,
+        	                breakpoint: 480,
         	                settings: 'unslick'
         	            }
         	        ]

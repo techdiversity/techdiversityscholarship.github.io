@@ -340,3 +340,10 @@ $slick-opacity-not-active: 0.25 !default;
         }
     }
 }
+
+.slick-carousel {
+    @include breakpoint(mobile) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

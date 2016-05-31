@@ -1,3 +1,3 @@
 import './students';
 import './fullpage-scroll';
-import './google-map';
+// import './google-map';
