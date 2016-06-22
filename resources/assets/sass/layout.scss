@@ -1,0 +1,136 @@
+/* Reset CSS
+ * --------------------------------------- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,textarea,p,blockquote,th,td {
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration:none;
+}
+table {
+	border-spacing: 0;
+}
+fieldset,img {
+	border: 0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-weight: normal;
+	font-style: normal;
+}
+strong{
+	font-weight: bold;
+}
+ol,ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+caption,th {
+	text-align: left;
+
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 100%;
+	margin:0;
+	padding:0;
+	color:#444;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border: 0;
+}
+
+
+/* Custom CSS
+ * --------------------------------------- */
+body{
+	font-family: arial,helvetica;
+	color: #F2F2F2;
+}
+h1{
+	font-size: 6em;
+}
+p{
+	font-size: 1.2em;
+	line-height: 1.2em;
+	text-align: left;
+	font-weight: bold;
+}
+.content{
+	/*position: relative;
+	top: 50%;
+	transform: translateY(-50%);*/
+	height: 100%;
+	color: $brand_clr;
+	// text-align: center;
+}
+
+.container {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+/* Student section
+ * --------------------------------------- */
+#section1{
+	background-color: #f2f2f2;
+
+	.container {
+		@include breakpoint(laptop) {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+
+		@media(min-width: 1300px) {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+.overview {
+	.container {
+		@media (min-width: 1400px){
+			width: 1300px;
+		}
+		@media (min-width: 1600px){
+			width: 1500px;
+		}
+	}
+}
+
+.overview {
+	.split-container-flex {
+		@include breakpoint(tablet) {
+			padding-left: 100px;
+		}
+
+		@include breakpoint(desktop) {
+			padding-left: 15px;
+		}
+	}
+}
+
+.container-flex {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include breakpoint(desktop) {
+		flex-direction: row;
+	}
+}
+
+.split-container-flex {
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.header-bottom .container-flex {
+	@include breakpoint(mobile) {
+		flex-direction: row;
+	}
+}
