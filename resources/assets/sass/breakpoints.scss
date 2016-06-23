@@ -2,8 +2,8 @@
     $pointsToSizes: (
         desktop: $screen-lg-desktop,
         laptop: $screen-md-min,
-        tablet: $screen-sm-min,
-        tabletonly: $screen-sm-min,
+        tablet: 960px,
+        tabletonly: 960px,
         phablet: $screen-xs-min,
         mobile: $screen-xs-min,
         mobileonly: $screen-xs-min
