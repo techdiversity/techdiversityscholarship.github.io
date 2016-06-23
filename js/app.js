@@ -2,6 +2,31 @@
 // shim for using process in browser
 
 var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+(function () {
+  try {
+    cachedSetTimeout = setTimeout;
+  } catch (e) {
+    cachedSetTimeout = function () {
+      throw new Error('setTimeout is not defined');
+    }
+  }
+  try {
+    cachedClearTimeout = clearTimeout;
+  } catch (e) {
+    cachedClearTimeout = function () {
+      throw new Error('clearTimeout is not defined');
+    }
+  }
+} ())
 var queue = [];
 var draining = false;
 var currentQueue;
@@ -26,7 +51,7 @@ function drainQueue() {
     if (draining) {
         return;
     }
-    var timeout = setTimeout(cleanUpNextTick);
+    var timeout = cachedSetTimeout(cleanUpNextTick);
     draining = true;
 
     var len = queue.length;
@@ -43,7 +68,7 @@ function drainQueue() {
     }
     currentQueue = null;
     draining = false;
-    clearTimeout(timeout);
+    cachedClearTimeout(timeout);
 }
 
 process.nextTick = function (fun) {
@@ -55,7 +80,7 @@ process.nextTick = function (fun) {
     }
     queue.push(new Item(fun, args));
     if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
+        cachedSetTimeout(drainQueue, 0);
     }
 };
 
@@ -97,7 +122,7 @@ process.umask = function() { return 0; };
 },{}],2:[function(require,module,exports){
 (function (process,global){
 /*!
- * Vue.js v1.0.24
+ * Vue.js v1.0.25
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -496,10 +521,15 @@ var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 // UA sniffing for working around browser-specific quirks
 var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+var isIE = UA && UA.indexOf('trident') > 0;
 var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
 var isAndroid = UA && UA.indexOf('android') > 0;
 var isIos = UA && /(iphone|ipad|ipod|ios)/i.test(UA);
-var isWechat = UA && UA.indexOf('micromessenger') > 0;
+var iosVersionMatch = isIos && UA.match(/os ([\d_]+)/);
+var iosVersion = iosVersionMatch && iosVersionMatch[1].split('_');
+
+// detecting iOS UIWebView by indexedDB
+var hasMutationObserverBug = iosVersion && Number(iosVersion[0]) >= 9 && Number(iosVersion[1]) >= 3 && !window.indexedDB;
 
 var transitionProp = undefined;
 var transitionEndEvent = undefined;
@@ -540,7 +570,7 @@ var nextTick = (function () {
   }
 
   /* istanbul ignore if */
-  if (typeof MutationObserver !== 'undefined' && !(isWechat && isIos)) {
+  if (typeof MutationObserver !== 'undefined' && !hasMutationObserverBug) {
     var counter = 1;
     var observer = new MutationObserver(nextTickHandler);
     var textNode = document.createTextNode(counter);
@@ -612,12 +642,12 @@ var p = Cache.prototype;
 
 p.put = function (key, value) {
   var removed;
-  if (this.size === this.limit) {
-    removed = this.shift();
-  }
 
   var entry = this.get(key, true);
   if (!entry) {
+    if (this.size === this.limit) {
+      removed = this.shift();
+    }
     entry = {
       key: key
     };
@@ -862,7 +892,7 @@ function compileRegex() {
   var unsafeOpen = escapeRegex(config.unsafeDelimiters[0]);
   var unsafeClose = escapeRegex(config.unsafeDelimiters[1]);
   tagRE = new RegExp(unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '|' + open + '((?:.|\\n)+?)' + close, 'g');
-  htmlRE = new RegExp('^' + unsafeOpen + '.*' + unsafeClose + '$');
+  htmlRE = new RegExp('^' + unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '$');
   // reset cache
   cache = new Cache(1000);
 }
@@ -1649,7 +1679,8 @@ if (process.env.NODE_ENV !== 'production') {
       return (/HTMLUnknownElement/.test(el.toString()) &&
         // Chrome returns unknown for several HTML5 elements.
         // https://code.google.com/p/chromium/issues/detail?id=540526
-        !/^(data|time|rtc|rb)$/.test(tag)
+        // Firefox returns unknown for some "Interactive elements."
+        !/^(data|time|rtc|rb|details|dialog|summary)$/.test(tag)
       );
     }
   };
@@ -1985,7 +2016,9 @@ function mergeOptions(parent, child, vm) {
   }
   if (child.mixins) {
     for (var i = 0, l = child.mixins.length; i < l; i++) {
-      parent = mergeOptions(parent, child.mixins[i], vm);
+      var mixin = child.mixins[i];
+      var mixinOptions = mixin.prototype instanceof Vue ? mixin.options : mixin;
+      parent = mergeOptions(parent, mixinOptions, vm);
     }
   }
   for (key in parent) {
@@ -2413,10 +2446,13 @@ var util = Object.freeze({
 	hasProto: hasProto,
 	inBrowser: inBrowser,
 	devtools: devtools,
+	isIE: isIE,
 	isIE9: isIE9,
 	isAndroid: isAndroid,
 	isIos: isIos,
-	isWechat: isWechat,
+	iosVersionMatch: iosVersionMatch,
+	iosVersion: iosVersion,
+	hasMutationObserverBug: hasMutationObserverBug,
 	get transitionProp () { return transitionProp; },
 	get transitionEndEvent () { return transitionEndEvent; },
 	get animationProp () { return animationProp; },
@@ -2904,7 +2940,9 @@ var saveRE = /[\{,]\s*[\w\$_]+\s*:|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\
 var restoreRE = /"(\d+)"/g;
 var pathTestRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/;
 var identRE = /[^\w$\.](?:[A-Za-z_$][\w$]*)/g;
-var booleanLiteralRE = /^(?:true|false)$/;
+var literalValueRE$1 = /^(?:true|false|null|undefined|Infinity|NaN)$/;
+
+function noop() {}
 
 /**
  * Save / Rewrite / Restore
@@ -2986,7 +3024,7 @@ function compileGetter(exp) {
   // save strings and object literal keys
   var body = exp.replace(saveRE, save).replace(wsRE, '');
   // rewrite all paths
-  // pad 1 space here becaue the regex matches 1 extra char
+  // pad 1 space here because the regex matches 1 extra char
   body = (' ' + body).replace(identRE, rewrite).replace(restoreRE, restore);
   return makeGetterFn(body);
 }
@@ -3007,7 +3045,15 @@ function makeGetterFn(body) {
     return new Function('scope', 'return ' + body + ';');
     /* eslint-enable no-new-func */
   } catch (e) {
-    process.env.NODE_ENV !== 'production' && warn('Invalid expression. ' + 'Generated function body: ' + body);
+    if (process.env.NODE_ENV !== 'production') {
+      /* istanbul ignore if */
+      if (e.toString().match(/unsafe-eval|CSP/)) {
+        warn('It seems you are using the default build of Vue.js in an environment ' + 'with Content Security Policy that prohibits unsafe-eval. ' + 'Use the CSP-compliant build instead: ' + 'http://vuejs.org/guide/installation.html#CSP-compliant-build');
+      } else {
+        warn('Invalid expression. ' + 'Generated function body: ' + body);
+      }
+    }
+    return noop;
   }
 }
 
@@ -3069,8 +3115,8 @@ function parseExpression(exp, needSet) {
 
 function isSimplePath(exp) {
   return pathTestRE.test(exp) &&
-  // don't treat true/false as paths
-  !booleanLiteralRE.test(exp) &&
+  // don't treat literal values as paths
+  !literalValueRE$1.test(exp) &&
   // Math constants e.g. Math.PI, Math.E etc.
   exp.slice(0, 5) !== 'Math.';
 }
@@ -3549,6 +3595,7 @@ function isRealTemplate(node) {
 
 var tagRE$1 = /<([\w:-]+)/;
 var entityRE = /&#?\w+?;/;
+var commentRE = /<!--/;
 
 /**
  * Convert a string template to a DocumentFragment.
@@ -3571,8 +3618,9 @@ function stringToFragment(templateString, raw) {
   var frag = document.createDocumentFragment();
   var tagMatch = templateString.match(tagRE$1);
   var entityMatch = entityRE.test(templateString);
+  var commentMatch = commentRE.test(templateString);
 
-  if (!tagMatch && !entityMatch) {
+  if (!tagMatch && !entityMatch && !commentMatch) {
     // text only, return a single text node.
     frag.appendChild(document.createTextNode(templateString));
   } else {
@@ -4539,7 +4587,7 @@ var vFor = {
    * the filters. This is passed to and called by the watcher.
    *
    * It is necessary for this to be called during the
-   * wathcer's dependency collection phase because we want
+   * watcher's dependency collection phase because we want
    * the v-for to update when the source Object is mutated.
    */
 
@@ -4882,7 +4930,10 @@ var text$2 = {
   },
 
   update: function update(value) {
-    this.el.value = _toString(value);
+    // #3029 only update when the value changes. This prevent
+    // browsers from overwriting values like selectionStart
+    value = _toString(value);
+    if (value !== this.el.value) this.el.value = value;
   },
 
   unbind: function unbind() {
@@ -4931,6 +4982,8 @@ var radio = {
 var select = {
 
   bind: function bind() {
+    var _this = this;
+
     var self = this;
     var el = this.el;
 
@@ -4962,11 +5015,16 @@ var select = {
     // selectedIndex with value -1 to 0 when the element
     // is appended to a new parent, therefore we have to
     // force a DOM update whenever that happens...
-    this.vm.$on('hook:attached', this.forceUpdate);
+    this.vm.$on('hook:attached', function () {
+      nextTick(_this.forceUpdate);
+    });
   },
 
   update: function update(value) {
     var el = this.el;
+    if (!inDoc(el)) {
+      return nextTick(this.forceUpdate);
+    }
     el.selectedIndex = -1;
     var multi = this.multiple && isArray(value);
     var options = el.options;
@@ -6232,7 +6290,7 @@ function processPropValue(vm, prop, rawValue, fn) {
   if (value === undefined) {
     value = getPropDefaultValue(vm, prop);
   }
-  value = coerceProp(prop, value);
+  value = coerceProp(prop, value, vm);
   var coerced = value !== rawValue;
   if (!assertProp(prop, value, vm)) {
     value = undefined;
@@ -6351,13 +6409,17 @@ function assertProp(prop, value, vm) {
  * @return {*}
  */
 
-function coerceProp(prop, value) {
+function coerceProp(prop, value, vm) {
   var coerce = prop.options.coerce;
   if (!coerce) {
     return value;
   }
-  // coerce is a function
-  return coerce(value);
+  if (typeof coerce === 'function') {
+    return coerce(value);
+  } else {
+    process.env.NODE_ENV !== 'production' && warn('Invalid coerce for prop "' + prop.name + '": expected function, got ' + typeof coerce + '.', vm);
+    return value;
+  }
 }
 
 /**
@@ -6889,10 +6951,9 @@ var transition$1 = {
     // resolve on owner vm
     var hooks = resolveAsset(this.vm.$options, 'transitions', id);
     id = id || 'v';
+    oldId = oldId || 'v';
     el.__v_trans = new Transition(el, id, hooks, this.vm);
-    if (oldId) {
-      removeClass(el, oldId + '-transition');
-    }
+    removeClass(el, oldId + '-transition');
     addClass(el, id + '-transition');
   }
 };
@@ -7317,7 +7378,7 @@ function makeTextNodeLinkFn(tokens, frag) {
           if (token.html) {
             replace(node, parseTemplate(value, true));
           } else {
-            node.data = value;
+            node.data = _toString(value);
           }
         } else {
           vm._bindDir(token.descriptor, node, host, scope);
@@ -8301,7 +8362,7 @@ function eventsMixin (Vue) {
   };
 }
 
-function noop() {}
+function noop$1() {}
 
 /**
  * A directive links a DOM element with a piece of data,
@@ -8400,7 +8461,7 @@ Directive.prototype._bind = function () {
         }
       };
     } else {
-      this._update = noop;
+      this._update = noop$1;
     }
     var preProcess = this._preProcess ? bind(this._preProcess, this) : null;
     var postProcess = this._postProcess ? bind(this._postProcess, this) : null;
@@ -9838,7 +9899,7 @@ var filters = {
 
   json: {
     read: function read(value, indent) {
-      return typeof value === 'string' ? value : JSON.stringify(value, null, Number(indent) || 2);
+      return typeof value === 'string' ? value : JSON.stringify(value, null, arguments.length > 1 ? indent : 2);
     },
     write: function write(value) {
       try {
@@ -10096,7 +10157,9 @@ function installGlobalAPI (Vue) {
           }
         }
         if (type === 'component' && isPlainObject(definition)) {
-          definition.name = id;
+          if (!definition.name) {
+            definition.name = id;
+          }
           definition = Vue.extend(definition);
         }
         this.options[type + 's'][id] = definition;
@@ -10111,7 +10174,7 @@ function installGlobalAPI (Vue) {
 
 installGlobalAPI(Vue);
 
-Vue.version = '1.0.24';
+Vue.version = '1.0.25';
 
 // devtools global hook
 /* istanbul ignore next */
@@ -10164,16 +10227,18 @@ require('./fullpage-scroll');
 // Mobile
 // function mobileFullPage() {
 $('#fullpage').fullpage({
-    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
+    //anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
+    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'updates'],
     menu: '#menu',
     css3: true,
     navigation: true,
     navigationPosition: 'left',
     animateAnchor: false,
-    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+    //navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Updates'],
     responsiveWidth: 1024,
-    responsiveHeight: 768,
-    scrollingSpeed: 1500,
+    responsiveHeight: 10000,
+    scrollingSpeed: 10000,
     touchSensitivity: 15,
     autoScrolling: true,
 
@@ -10190,7 +10255,7 @@ $('#fullpage').fullpage({
                 mobileFirst: true,
                 slidesToScroll: 1,
                 responsive: [{
-                    breakpoint: 480,
+                    breakpoint: 900,
                     settings: 'unslick'
                 }]
             });
@@ -10248,7 +10313,7 @@ var example2 = new _vue2.default({
             link: "#students/astrid",
             description: "Astrid was a data analyst working in oil and gas and decided to pursue her passion for building software.",
             image: "images/students/astrid.png",
-            title: "Mobile Developer",
+            title: "Web Developer",
             slide: 1,
             bios: ["I feel so privileged to be at this place in my life. I feel so blessed to have had this experience. In a way, being able to be employed as a software developer is the least important aspect of this journey. The best part has been the person that I have become in the process. I believe in myself more, and I participate in life more, and I can see so much opportunity that before was invisible to me. I feel like I am crafting my kind of life, where I can do the things that I love, and make a living doing it. I plan to do that by getting more women like me involved, and helping to teach more people to code. How many ways can you say your grateful? I feel like I may never stop.", "In many ways I hate to see this part of my life end, but I am so looking forward to where I go from here. I have a feeling that instead of an ending, I am experiencing and expansion, and that somehow all of this will just keep growing and changing. I hope that we all stay connected along the way, cause I already miss these guys so much."]
         }, {
@@ -10257,7 +10322,7 @@ var example2 = new _vue2.default({
             link: "#students/andrew",
             description: "Andrew switched majors several times in college before finding his stride in programming.",
             image: "images/students/andrew.png",
-            title: "Mobile Developer",
+            title: "Web Developer",
             slide: 2,
             bios: ["I was born in America, and my parents are Egyptian with a Middle Eastern mentality. For them, life is defined by three professions: doctor, lawyer or engineer. If you weren’t one of those, you were just average. So I tried to follow in my brother Peter’s footsteps and went into pre-med. Eventually, I came home to my mom and said, “mom, I can’t do this. It’s not me.”", "I have always loved that idea that technology is there for the good of mankind. It really helps us and makes our lives easier when we don’t even know it. I fell in love with that idea of the human telling the computer what to do. I switched to Computer Science and I just loved it. I was in my Java II class (at Kennesaw State University) and somebody next to me was talking about a coding program called The Iron Yard. He was telling me all these things that I just did not believe, like they train you for three months, and at the end they give you the skills and experience to get a job. I was intrigued! So, I looked into it, talked to my mom and decided to give it a try.", "At that point, I had switched majors a few times and I wanted to take a break. I took a semester off to try The Iron Yard. I could tell in the first interview with The Iron Yard that they really are interested in each individual and in his/her capabilities. Tim Whitacre [Front-End Instructor] was just a real man and I respect him very much. Once I started class, everybody was just so kind and willing to help each other. It was that type of environment where we all wanted to work together and not compete at all.", "After week two, the class really picked up and became more difficult. But even in those moments, I could rely on the people around me and my instructor helped me every step of the way. It was more about learning to solving a problem, not focusing on the problem. That practice of solving problems can be applied to so many concepts in life, not just in coding.", "I always knew I wanted to deal with Java, because my first phone was a G1 and I fell in love with that offering. When I was in school, I fiddled around with small Android applications here and there in my Java II class. What The Iron Yard gave me was the gift and the capability to learn concepts of a language and to better understand the functions of each language.", "After graduation, I went back to Java after learning JavaScript with a whole new mindset. I was able to pick up concepts just like that. Being able to do it yourself, live it and apply it. That is what The Iron Yard gave me.", "Someone from the department of Biomedical Informatics at Emory who had attended our Demo Day presentation contacted me a couple of weeks afterward and asked if I would be willing to come in for an interview for a mobile engineering position. Even though I was still junior level in Java, he gave me a chance.", "Now, I am honestly working at the best job of my life, with the best cause in the world. My job is to develop mobile health applications for people in remote villages that don’t have access to health care in areas of Guatemala and other isolated areas in third world countries.", "The specific application that I am working on right now is an Android application that hooks up to ultrasound devices. It helps midwives who are taking care of pregnant women. Most of them are unable to read, so I had to tailor this application for them. It is very vocal and visual, with audible instructions.", "It’s really ironic that I was pre-med and I still somehow ended up in the medical field, not as a doctor but as a developer. Now, I’m finishing my bachelor’s degree online, and at the same time doing a job I love."]
         }, {
@@ -10284,7 +10349,7 @@ var example2 = new _vue2.default({
             link: "#students/wonman",
             description: "Wonman used to work for a Senator on Capitol Hill. He now works as a back-end developer.",
             image: "images/students/wonman.png",
-            title: "Mobile Developer",
+            title: "Web Developer",
             slide: 2,
             bios: ["Before The Iron Yard, I was a systems administrator on the Hill. Random fun fact: My coworkers used to refer to me as Nick Burns on SNL. I spent 2014 knocking on doors in Alaska working on Senator Mark Begich’s re-election.", "With the Senator’s loss in the November election, I found myself without a job.", "President Obama and Su Kim, the Campus Director. Both deserve credit. President Obama has given countless speeches expounding on the need for more American workers skilled in STEM fields. Moving into the software field was always a goal of mine but I wasn’t able to learn efficiently while studying on my own.", "A bootcamp however fit my learning style and my current status of being unemployed perfectly.", "I feel like I am now equipped with the proper tools to create things. They may be rudimentary currently but with practice I feel like I can hone them to create professional and valuable apps that can create change.", "One of the great strengths of software is its ability to scale everything and I’m hoping to take advantage of that in the future."]
         }]
