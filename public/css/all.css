@@ -7077,7 +7077,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   color: #526c79;
   line-height: 1.5em;
   font-size: 1.2em;
-  opacity: 0.8; }
+  opacity: 0.8;
+  font-weight: normal; }
 
 @media (min-width: 1200px) {
   .section-intro {
