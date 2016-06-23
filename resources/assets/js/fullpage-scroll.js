@@ -35,8 +35,8 @@
         animateAnchor: false,
         navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
         responsiveWidth: 1024,
-        responsiveHeight: 768,
-        scrollingSpeed: 1500,
+        responsiveHeight: 10000,
+        scrollingSpeed: 10000,
         touchSensitivity: 15,
         autoScrolling: true,
 
@@ -54,7 +54,7 @@
         	        slidesToScroll: 1,
         	        responsive: [
         	            {
-        	                breakpoint: 480,
+        	                breakpoint: 900,
         	                settings: 'unslick'
         	            }
         	        ]

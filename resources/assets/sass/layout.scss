@@ -104,11 +104,13 @@ p{
 .overview {
 	.split-container-flex {
 		@include breakpoint(tablet) {
-			padding-left: 100px;
+			// padding-left: 100px;
+			align-items: flex-start;
+			justify-content: flex-end;
 		}
 
 		@include breakpoint(desktop) {
-			padding-left: 15px;
+			// padding-left: 15px;
 		}
 	}
 }
@@ -133,4 +135,8 @@ p{
 	@include breakpoint(mobile) {
 		flex-direction: row;
 	}
+}
+
+#fullpage {
+	overflow: hidden;
 }
