@@ -37,7 +37,7 @@
         responsiveWidth: 10000,
         responsiveHeight: 10000,
         scrollingSpeed: 1000,
-        touchSensitivity: 15,
+        touchSensitivity: 10000000,
         autoScrolling: true,
 
         afterRender: function(){

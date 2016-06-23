@@ -12186,7 +12186,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /*!
- * Vue.js v1.0.25
+ * Vue.js v1.0.24
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -12589,15 +12589,10 @@ if (typeof jQuery === 'undefined') {
 
   // UA sniffing for working around browser-specific quirks
   var UA = inBrowser && window.navigator.userAgent.toLowerCase();
-  var isIE = UA && UA.indexOf('trident') > 0;
   var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
   var isAndroid = UA && UA.indexOf('android') > 0;
   var isIos = UA && /(iphone|ipad|ipod|ios)/i.test(UA);
-  var iosVersionMatch = isIos && UA.match(/os ([\d_]+)/);
-  var iosVersion = iosVersionMatch && iosVersionMatch[1].split('_');
-
-  // detecting iOS UIWebView by indexedDB
-  var hasMutationObserverBug = iosVersion && Number(iosVersion[0]) >= 9 && Number(iosVersion[1]) >= 3 && !window.indexedDB;
+  var isWechat = UA && UA.indexOf('micromessenger') > 0;
 
   var transitionProp = undefined;
   var transitionEndEvent = undefined;
@@ -12638,7 +12633,7 @@ if (typeof jQuery === 'undefined') {
     }
 
     /* istanbul ignore if */
-    if (typeof MutationObserver !== 'undefined' && !hasMutationObserverBug) {
+    if (typeof MutationObserver !== 'undefined' && !(isWechat && isIos)) {
       var counter = 1;
       var observer = new MutationObserver(nextTickHandler);
       var textNode = document.createTextNode(counter);
@@ -12710,12 +12705,12 @@ if (typeof jQuery === 'undefined') {
 
   p.put = function (key, value) {
     var removed;
+    if (this.size === this.limit) {
+      removed = this.shift();
+    }
 
     var entry = this.get(key, true);
     if (!entry) {
-      if (this.size === this.limit) {
-        removed = this.shift();
-      }
       entry = {
         key: key
       };
@@ -12960,7 +12955,7 @@ var directive = Object.freeze({
     var unsafeOpen = escapeRegex(config.unsafeDelimiters[0]);
     var unsafeClose = escapeRegex(config.unsafeDelimiters[1]);
     tagRE = new RegExp(unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '|' + open + '((?:.|\\n)+?)' + close, 'g');
-    htmlRE = new RegExp('^' + unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '$');
+    htmlRE = new RegExp('^' + unsafeOpen + '.*' + unsafeClose + '$');
     // reset cache
     cache = new Cache(1000);
   }
@@ -13747,8 +13742,7 @@ var transition = Object.freeze({
         return (/HTMLUnknownElement/.test(el.toString()) &&
           // Chrome returns unknown for several HTML5 elements.
           // https://code.google.com/p/chromium/issues/detail?id=540526
-          // Firefox returns unknown for some "Interactive elements."
-          !/^(data|time|rtc|rb|details|dialog|summary)$/.test(tag)
+          !/^(data|time|rtc|rb)$/.test(tag)
         );
       }
     };
@@ -14084,9 +14078,7 @@ var transition = Object.freeze({
     }
     if (child.mixins) {
       for (var i = 0, l = child.mixins.length; i < l; i++) {
-        var mixin = child.mixins[i];
-        var mixinOptions = mixin.prototype instanceof Vue ? mixin.options : mixin;
-        parent = mergeOptions(parent, mixinOptions, vm);
+        parent = mergeOptions(parent, child.mixins[i], vm);
       }
     }
     for (key in parent) {
@@ -14514,13 +14506,10 @@ var transition = Object.freeze({
   	hasProto: hasProto,
   	inBrowser: inBrowser,
   	devtools: devtools,
-  	isIE: isIE,
   	isIE9: isIE9,
   	isAndroid: isAndroid,
   	isIos: isIos,
-  	iosVersionMatch: iosVersionMatch,
-  	iosVersion: iosVersion,
-  	hasMutationObserverBug: hasMutationObserverBug,
+  	isWechat: isWechat,
   	get transitionProp () { return transitionProp; },
   	get transitionEndEvent () { return transitionEndEvent; },
   	get animationProp () { return animationProp; },
@@ -15008,9 +14997,7 @@ var path = Object.freeze({
   var restoreRE = /"(\d+)"/g;
   var pathTestRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/;
   var identRE = /[^\w$\.](?:[A-Za-z_$][\w$]*)/g;
-  var literalValueRE$1 = /^(?:true|false|null|undefined|Infinity|NaN)$/;
-
-  function noop() {}
+  var booleanLiteralRE = /^(?:true|false)$/;
 
   /**
    * Save / Rewrite / Restore
@@ -15092,7 +15079,7 @@ var path = Object.freeze({
     // save strings and object literal keys
     var body = exp.replace(saveRE, save).replace(wsRE, '');
     // rewrite all paths
-    // pad 1 space here because the regex matches 1 extra char
+    // pad 1 space here becaue the regex matches 1 extra char
     body = (' ' + body).replace(identRE, rewrite).replace(restoreRE, restore);
     return makeGetterFn(body);
   }
@@ -15113,15 +15100,7 @@ var path = Object.freeze({
       return new Function('scope', 'return ' + body + ';');
       /* eslint-enable no-new-func */
     } catch (e) {
-      if ('development' !== 'production') {
-        /* istanbul ignore if */
-        if (e.toString().match(/unsafe-eval|CSP/)) {
-          warn('It seems you are using the default build of Vue.js in an environment ' + 'with Content Security Policy that prohibits unsafe-eval. ' + 'Use the CSP-compliant build instead: ' + 'http://vuejs.org/guide/installation.html#CSP-compliant-build');
-        } else {
-          warn('Invalid expression. ' + 'Generated function body: ' + body);
-        }
-      }
-      return noop;
+      'development' !== 'production' && warn('Invalid expression. ' + 'Generated function body: ' + body);
     }
   }
 
@@ -15183,8 +15162,8 @@ var path = Object.freeze({
 
   function isSimplePath(exp) {
     return pathTestRE.test(exp) &&
-    // don't treat literal values as paths
-    !literalValueRE$1.test(exp) &&
+    // don't treat true/false as paths
+    !booleanLiteralRE.test(exp) &&
     // Math constants e.g. Math.PI, Math.E etc.
     exp.slice(0, 5) !== 'Math.';
   }
@@ -15663,7 +15642,6 @@ var expression = Object.freeze({
 
   var tagRE$1 = /<([\w:-]+)/;
   var entityRE = /&#?\w+?;/;
-  var commentRE = /<!--/;
 
   /**
    * Convert a string template to a DocumentFragment.
@@ -15686,9 +15664,8 @@ var expression = Object.freeze({
     var frag = document.createDocumentFragment();
     var tagMatch = templateString.match(tagRE$1);
     var entityMatch = entityRE.test(templateString);
-    var commentMatch = commentRE.test(templateString);
 
-    if (!tagMatch && !entityMatch && !commentMatch) {
+    if (!tagMatch && !entityMatch) {
       // text only, return a single text node.
       frag.appendChild(document.createTextNode(templateString));
     } else {
@@ -16655,7 +16632,7 @@ var template = Object.freeze({
      * the filters. This is passed to and called by the watcher.
      *
      * It is necessary for this to be called during the
-     * watcher's dependency collection phase because we want
+     * wathcer's dependency collection phase because we want
      * the v-for to update when the source Object is mutated.
      */
 
@@ -16998,10 +16975,7 @@ var template = Object.freeze({
     },
 
     update: function update(value) {
-      // #3029 only update when the value changes. This prevent
-      // browsers from overwriting values like selectionStart
-      value = _toString(value);
-      if (value !== this.el.value) this.el.value = value;
+      this.el.value = _toString(value);
     },
 
     unbind: function unbind() {
@@ -17050,8 +17024,6 @@ var template = Object.freeze({
   var select = {
 
     bind: function bind() {
-      var _this = this;
-
       var self = this;
       var el = this.el;
 
@@ -17083,16 +17055,11 @@ var template = Object.freeze({
       // selectedIndex with value -1 to 0 when the element
       // is appended to a new parent, therefore we have to
       // force a DOM update whenever that happens...
-      this.vm.$on('hook:attached', function () {
-        nextTick(_this.forceUpdate);
-      });
+      this.vm.$on('hook:attached', this.forceUpdate);
     },
 
     update: function update(value) {
       var el = this.el;
-      if (!inDoc(el)) {
-        return nextTick(this.forceUpdate);
-      }
       el.selectedIndex = -1;
       var multi = this.multiple && isArray(value);
       var options = el.options;
@@ -18358,7 +18325,7 @@ var template = Object.freeze({
     if (value === undefined) {
       value = getPropDefaultValue(vm, prop);
     }
-    value = coerceProp(prop, value, vm);
+    value = coerceProp(prop, value);
     var coerced = value !== rawValue;
     if (!assertProp(prop, value, vm)) {
       value = undefined;
@@ -18477,17 +18444,13 @@ var template = Object.freeze({
    * @return {*}
    */
 
-  function coerceProp(prop, value, vm) {
+  function coerceProp(prop, value) {
     var coerce = prop.options.coerce;
     if (!coerce) {
       return value;
     }
-    if (typeof coerce === 'function') {
-      return coerce(value);
-    } else {
-      'development' !== 'production' && warn('Invalid coerce for prop "' + prop.name + '": expected function, got ' + typeof coerce + '.', vm);
-      return value;
-    }
+    // coerce is a function
+    return coerce(value);
   }
 
   /**
@@ -19019,9 +18982,10 @@ var template = Object.freeze({
       // resolve on owner vm
       var hooks = resolveAsset(this.vm.$options, 'transitions', id);
       id = id || 'v';
-      oldId = oldId || 'v';
       el.__v_trans = new Transition(el, id, hooks, this.vm);
-      removeClass(el, oldId + '-transition');
+      if (oldId) {
+        removeClass(el, oldId + '-transition');
+      }
       addClass(el, id + '-transition');
     }
   };
@@ -19439,7 +19403,7 @@ var template = Object.freeze({
             if (token.html) {
               replace(node, parseTemplate(value, true));
             } else {
-              node.data = _toString(value);
+              node.data = value;
             }
           } else {
             vm._bindDir(token.descriptor, node, host, scope);
@@ -20423,7 +20387,7 @@ var template = Object.freeze({
     };
   }
 
-  function noop$1() {}
+  function noop() {}
 
   /**
    * A directive links a DOM element with a piece of data,
@@ -20522,7 +20486,7 @@ var template = Object.freeze({
           }
         };
       } else {
-        this._update = noop$1;
+        this._update = noop;
       }
       var preProcess = this._preProcess ? bind(this._preProcess, this) : null;
       var postProcess = this._postProcess ? bind(this._postProcess, this) : null;
@@ -21960,7 +21924,7 @@ var template = Object.freeze({
 
     json: {
       read: function read(value, indent) {
-        return typeof value === 'string' ? value : JSON.stringify(value, null, arguments.length > 1 ? indent : 2);
+        return typeof value === 'string' ? value : JSON.stringify(value, null, Number(indent) || 2);
       },
       write: function write(value) {
         try {
@@ -22218,9 +22182,7 @@ var template = Object.freeze({
             }
           }
           if (type === 'component' && isPlainObject(definition)) {
-            if (!definition.name) {
-              definition.name = id;
-            }
+            definition.name = id;
             definition = Vue.extend(definition);
           }
           this.options[type + 's'][id] = definition;
@@ -22235,7 +22197,7 @@ var template = Object.freeze({
 
   installGlobalAPI(Vue);
 
-  Vue.version = '1.0.25';
+  Vue.version = '1.0.24';
 
   // devtools global hook
   /* istanbul ignore next */
@@ -22336,7 +22298,7 @@ this.sizeRatioX=this.options.speedRatioX||this.scroller.maxScrollX&&this.maxPosX
 this.height+"px"));this.x=a;this.y=b;this.scroller.options.useTransform?this.indicatorStyle[d.style.transform]="translate("+a+"px,"+b+"px)"+this.scroller.translateZ:(this.indicatorStyle.left=a+"px",this.indicatorStyle.top=b+"px")},_pos:function(a,b){0>a?a=0:a>this.maxPosX&&(a=this.maxPosX);0>b?b=0:b>this.maxPosY&&(b=this.maxPosY);a=this.options.listenX?f.round(a/this.sizeRatioX):this.scroller.x;b=this.options.listenY?f.round(b/this.sizeRatioY):this.scroller.y;this.scroller.scrollTo(a,b)},fade:function(a,
 b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var c=a?0:300;this.wrapperStyle[d.style.transitionDuration]=(a?250:500)+"ms";this.fadeTimeout=setTimeout(function(a){this.wrapperStyle.opacity=a;this.visible=+a}.bind(this,a?"1":"0"),c)}}};p.utils=d;"undefined"!=typeof module&&module.exports?module.exports=p:"function"==typeof define&&define.amd?define(function(){return p}):g.IScroll=p})(window,document,Math);
 /*!
- * fullPage 2.8.1
+ * fullPage 2.8.0
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -22363,6 +22325,8 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
     // slimscroll
     var SCROLLABLE =            'fp-scrollable';
     var SCROLLABLE_SEL =        '.' + SCROLLABLE;
+    var SLIMSCROLL_BAR_SEL =    '.slimScrollBar';
+    var SLIMSCROLL_RAIL_SEL =   '.slimScrollRail';
 
     // util
     var RESPONSIVE =            'fp-responsive';
@@ -22431,15 +22395,12 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         mouseWheel: true,
         hideScrollbars: false,
         fadeScrollbars: false,
-        disableMouse: true,
-
-        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
-        click: true 
+        disableMouse: true
     };
 
     $.fn.fullpage = function(options) {
         //only once my friend!
-        if($('html').hasClass(ENABLED)){ displayWarnings(); return; }
+        if($('html').hasClass(ENABLED)){ displayWarnings(); return };
 
         // common jQuery objects
         var $htmlBody = $('html, body');
@@ -22490,6 +22451,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
             controlArrows: true,
             controlArrowColor: '#fff',
             verticalCentered: true,
+            resize: false,
             sectionsColor : [],
             paddingTop: 0,
             paddingBottom: 0,
@@ -22690,7 +22652,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         */
         FP.silentMoveTo = function(sectionAnchor, slideAnchor){
             FP.setScrollingSpeed (0, 'internal');
-            FP.moveTo(sectionAnchor, slideAnchor);
+            FP.moveTo(sectionAnchor, slideAnchor)
             FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
         };
 
@@ -22732,7 +22694,13 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
 
             isResizing = true;
 
+            var windowsWidth = $window.outerWidth();
             windowsHeight = $window.height();  //updating global var
+
+            //text resizing
+            if (options.resize) {
+                resizeMe(windowsHeight, windowsWidth);
+            }
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -22797,7 +22765,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
             }
-        };
+        }
 
         //flag to avoid very fast sliding for landscape sliders
         var slideMoving = false;
@@ -23955,8 +23923,8 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '').split('/');
-            var section = decodeURIComponent(value[0]);
-            var slide = decodeURIComponent(value[1]);
+            var section = value[0];
+            var slide = value[1];
 
             if(section){  //if theres any #
                 if(options.animateAnchor){
@@ -23974,8 +23942,8 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
-                var section = decodeURIComponent(value[0]);
-                var slide = decodeURIComponent(value[1]);
+                var section = value[0];
+                var slide = value[1];
 
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
@@ -24324,6 +24292,26 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         }
 
         /**
+         * Resizing of the font size depending on the window size as well as some of the images on the site.
+         */
+        function resizeMe(displayHeight, displayWidth) {
+            //Standard dimensions, for which the body font size is correct
+            var preferredHeight = 825;
+            var preferredWidth = 900;
+
+            if (displayHeight < preferredHeight || displayWidth < preferredWidth) {
+                var heightPercentage = (displayHeight * 100) / preferredHeight;
+                var widthPercentage = (displayWidth * 100) / preferredWidth;
+                var percentage = Math.min(heightPercentage, widthPercentage);
+                var newFontSize = percentage.toFixed(2);
+
+                $body.css('font-size', newFontSize + '%');
+            } else {
+                $body.css('font-size', '100%');
+            }
+        }
+
+        /**
          * Activating the website navigation dots according to the given slide name.
          */
         function activateNavDots(name, sectionIndex){
@@ -24644,6 +24632,8 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
 
             var sectionAnchor = getAnchor(section);
             var slideAnchor = getAnchor(slide);
+
+            var sectionIndex = section.index(SECTION_SEL);
 
             var text = String(sectionAnchor);
 
@@ -25070,7 +25060,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
             this.wrapper.addEventListener('wheel', this);
             this.wrapper.addEventListener('mousewheel', this);
             this.wrapper.addEventListener('DOMMouseScroll', this);
-        };
+        }
 
         /*
         * Turns iScroll `mousewheel` option on dynamically
@@ -25080,7 +25070,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
             this.wrapper.removeEventListener('wheel', this);
             this.wrapper.removeEventListener('mousewheel', this);
             this.wrapper.removeEventListener('DOMMouseScroll', this);
-        };
+        }
     }
 
     /**
@@ -25103,8 +25093,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         */
         onLeave: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-
-            if(typeof scroller !== 'undefined' && scroller){
+            if(typeof scroller !== 'undefined'){
                 scroller.wheelOff();
             }
         },
@@ -25112,7 +25101,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
         // Turns on iScroll on section load
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined' && scroller){
+            if(typeof scroller !== 'undefined'){
                 scroller.wheelOn();
             }
         },
@@ -25201,7 +25190,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
                 var iScrollInstance = scrollable.data('iscrollInstance');
                 iScrollInstance.destroy();
 
-                scrollable.data('iscrollInstance', 'undefined');
+                scrollable.data( 'iscrollInstance', undefined );
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
@@ -25221,7 +25210,7 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
             iscrollHandler.refreshId = setTimeout(function(){
                 $.each(iscrollHandler.iScrollInstances, function(){
                     $(this).get(0).refresh();
-                });
+                })
             }, 150);
 
             //updating the wrappers height
@@ -25241,36 +25230,10 @@ b){if(!b||this.visible){clearTimeout(this.fadeTimeout);this.fadeTimeout=null;var
     };
 
 });
-
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-(function () {
-  try {
-    cachedSetTimeout = setTimeout;
-  } catch (e) {
-    cachedSetTimeout = function () {
-      throw new Error('setTimeout is not defined');
-    }
-  }
-  try {
-    cachedClearTimeout = clearTimeout;
-  } catch (e) {
-    cachedClearTimeout = function () {
-      throw new Error('clearTimeout is not defined');
-    }
-  }
-} ())
 var queue = [];
 var draining = false;
 var currentQueue;
@@ -25295,7 +25258,7 @@ function drainQueue() {
     if (draining) {
         return;
     }
-    var timeout = cachedSetTimeout(cleanUpNextTick);
+    var timeout = setTimeout(cleanUpNextTick);
     draining = true;
 
     var len = queue.length;
@@ -25312,7 +25275,7 @@ function drainQueue() {
     }
     currentQueue = null;
     draining = false;
-    cachedClearTimeout(timeout);
+    clearTimeout(timeout);
 }
 
 process.nextTick = function (fun) {
@@ -25324,7 +25287,7 @@ process.nextTick = function (fun) {
     }
     queue.push(new Item(fun, args));
     if (queue.length === 1 && !draining) {
-        cachedSetTimeout(drainQueue, 0);
+        setTimeout(drainQueue, 0);
     }
 };
 
@@ -25366,7 +25329,7 @@ process.umask = function() { return 0; };
 },{}],2:[function(require,module,exports){
 (function (process,global){
 /*!
- * Vue.js v1.0.25
+ * Vue.js v1.0.24
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -25765,15 +25728,10 @@ var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 // UA sniffing for working around browser-specific quirks
 var UA = inBrowser && window.navigator.userAgent.toLowerCase();
-var isIE = UA && UA.indexOf('trident') > 0;
 var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
 var isAndroid = UA && UA.indexOf('android') > 0;
 var isIos = UA && /(iphone|ipad|ipod|ios)/i.test(UA);
-var iosVersionMatch = isIos && UA.match(/os ([\d_]+)/);
-var iosVersion = iosVersionMatch && iosVersionMatch[1].split('_');
-
-// detecting iOS UIWebView by indexedDB
-var hasMutationObserverBug = iosVersion && Number(iosVersion[0]) >= 9 && Number(iosVersion[1]) >= 3 && !window.indexedDB;
+var isWechat = UA && UA.indexOf('micromessenger') > 0;
 
 var transitionProp = undefined;
 var transitionEndEvent = undefined;
@@ -25814,7 +25772,7 @@ var nextTick = (function () {
   }
 
   /* istanbul ignore if */
-  if (typeof MutationObserver !== 'undefined' && !hasMutationObserverBug) {
+  if (typeof MutationObserver !== 'undefined' && !(isWechat && isIos)) {
     var counter = 1;
     var observer = new MutationObserver(nextTickHandler);
     var textNode = document.createTextNode(counter);
@@ -25886,12 +25844,12 @@ var p = Cache.prototype;
 
 p.put = function (key, value) {
   var removed;
+  if (this.size === this.limit) {
+    removed = this.shift();
+  }
 
   var entry = this.get(key, true);
   if (!entry) {
-    if (this.size === this.limit) {
-      removed = this.shift();
-    }
     entry = {
       key: key
     };
@@ -26136,7 +26094,7 @@ function compileRegex() {
   var unsafeOpen = escapeRegex(config.unsafeDelimiters[0]);
   var unsafeClose = escapeRegex(config.unsafeDelimiters[1]);
   tagRE = new RegExp(unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '|' + open + '((?:.|\\n)+?)' + close, 'g');
-  htmlRE = new RegExp('^' + unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '$');
+  htmlRE = new RegExp('^' + unsafeOpen + '.*' + unsafeClose + '$');
   // reset cache
   cache = new Cache(1000);
 }
@@ -26923,8 +26881,7 @@ if (process.env.NODE_ENV !== 'production') {
       return (/HTMLUnknownElement/.test(el.toString()) &&
         // Chrome returns unknown for several HTML5 elements.
         // https://code.google.com/p/chromium/issues/detail?id=540526
-        // Firefox returns unknown for some "Interactive elements."
-        !/^(data|time|rtc|rb|details|dialog|summary)$/.test(tag)
+        !/^(data|time|rtc|rb)$/.test(tag)
       );
     }
   };
@@ -27260,9 +27217,7 @@ function mergeOptions(parent, child, vm) {
   }
   if (child.mixins) {
     for (var i = 0, l = child.mixins.length; i < l; i++) {
-      var mixin = child.mixins[i];
-      var mixinOptions = mixin.prototype instanceof Vue ? mixin.options : mixin;
-      parent = mergeOptions(parent, mixinOptions, vm);
+      parent = mergeOptions(parent, child.mixins[i], vm);
     }
   }
   for (key in parent) {
@@ -27690,13 +27645,10 @@ var util = Object.freeze({
 	hasProto: hasProto,
 	inBrowser: inBrowser,
 	devtools: devtools,
-	isIE: isIE,
 	isIE9: isIE9,
 	isAndroid: isAndroid,
 	isIos: isIos,
-	iosVersionMatch: iosVersionMatch,
-	iosVersion: iosVersion,
-	hasMutationObserverBug: hasMutationObserverBug,
+	isWechat: isWechat,
 	get transitionProp () { return transitionProp; },
 	get transitionEndEvent () { return transitionEndEvent; },
 	get animationProp () { return animationProp; },
@@ -28184,9 +28136,7 @@ var saveRE = /[\{,]\s*[\w\$_]+\s*:|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\
 var restoreRE = /"(\d+)"/g;
 var pathTestRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/;
 var identRE = /[^\w$\.](?:[A-Za-z_$][\w$]*)/g;
-var literalValueRE$1 = /^(?:true|false|null|undefined|Infinity|NaN)$/;
-
-function noop() {}
+var booleanLiteralRE = /^(?:true|false)$/;
 
 /**
  * Save / Rewrite / Restore
@@ -28268,7 +28218,7 @@ function compileGetter(exp) {
   // save strings and object literal keys
   var body = exp.replace(saveRE, save).replace(wsRE, '');
   // rewrite all paths
-  // pad 1 space here because the regex matches 1 extra char
+  // pad 1 space here becaue the regex matches 1 extra char
   body = (' ' + body).replace(identRE, rewrite).replace(restoreRE, restore);
   return makeGetterFn(body);
 }
@@ -28289,15 +28239,7 @@ function makeGetterFn(body) {
     return new Function('scope', 'return ' + body + ';');
     /* eslint-enable no-new-func */
   } catch (e) {
-    if (process.env.NODE_ENV !== 'production') {
-      /* istanbul ignore if */
-      if (e.toString().match(/unsafe-eval|CSP/)) {
-        warn('It seems you are using the default build of Vue.js in an environment ' + 'with Content Security Policy that prohibits unsafe-eval. ' + 'Use the CSP-compliant build instead: ' + 'http://vuejs.org/guide/installation.html#CSP-compliant-build');
-      } else {
-        warn('Invalid expression. ' + 'Generated function body: ' + body);
-      }
-    }
-    return noop;
+    process.env.NODE_ENV !== 'production' && warn('Invalid expression. ' + 'Generated function body: ' + body);
   }
 }
 
@@ -28359,8 +28301,8 @@ function parseExpression(exp, needSet) {
 
 function isSimplePath(exp) {
   return pathTestRE.test(exp) &&
-  // don't treat literal values as paths
-  !literalValueRE$1.test(exp) &&
+  // don't treat true/false as paths
+  !booleanLiteralRE.test(exp) &&
   // Math constants e.g. Math.PI, Math.E etc.
   exp.slice(0, 5) !== 'Math.';
 }
@@ -28839,7 +28781,6 @@ function isRealTemplate(node) {
 
 var tagRE$1 = /<([\w:-]+)/;
 var entityRE = /&#?\w+?;/;
-var commentRE = /<!--/;
 
 /**
  * Convert a string template to a DocumentFragment.
@@ -28862,9 +28803,8 @@ function stringToFragment(templateString, raw) {
   var frag = document.createDocumentFragment();
   var tagMatch = templateString.match(tagRE$1);
   var entityMatch = entityRE.test(templateString);
-  var commentMatch = commentRE.test(templateString);
 
-  if (!tagMatch && !entityMatch && !commentMatch) {
+  if (!tagMatch && !entityMatch) {
     // text only, return a single text node.
     frag.appendChild(document.createTextNode(templateString));
   } else {
@@ -29831,7 +29771,7 @@ var vFor = {
    * the filters. This is passed to and called by the watcher.
    *
    * It is necessary for this to be called during the
-   * watcher's dependency collection phase because we want
+   * wathcer's dependency collection phase because we want
    * the v-for to update when the source Object is mutated.
    */
 
@@ -30174,10 +30114,7 @@ var text$2 = {
   },
 
   update: function update(value) {
-    // #3029 only update when the value changes. This prevent
-    // browsers from overwriting values like selectionStart
-    value = _toString(value);
-    if (value !== this.el.value) this.el.value = value;
+    this.el.value = _toString(value);
   },
 
   unbind: function unbind() {
@@ -30226,8 +30163,6 @@ var radio = {
 var select = {
 
   bind: function bind() {
-    var _this = this;
-
     var self = this;
     var el = this.el;
 
@@ -30259,16 +30194,11 @@ var select = {
     // selectedIndex with value -1 to 0 when the element
     // is appended to a new parent, therefore we have to
     // force a DOM update whenever that happens...
-    this.vm.$on('hook:attached', function () {
-      nextTick(_this.forceUpdate);
-    });
+    this.vm.$on('hook:attached', this.forceUpdate);
   },
 
   update: function update(value) {
     var el = this.el;
-    if (!inDoc(el)) {
-      return nextTick(this.forceUpdate);
-    }
     el.selectedIndex = -1;
     var multi = this.multiple && isArray(value);
     var options = el.options;
@@ -31534,7 +31464,7 @@ function processPropValue(vm, prop, rawValue, fn) {
   if (value === undefined) {
     value = getPropDefaultValue(vm, prop);
   }
-  value = coerceProp(prop, value, vm);
+  value = coerceProp(prop, value);
   var coerced = value !== rawValue;
   if (!assertProp(prop, value, vm)) {
     value = undefined;
@@ -31653,17 +31583,13 @@ function assertProp(prop, value, vm) {
  * @return {*}
  */
 
-function coerceProp(prop, value, vm) {
+function coerceProp(prop, value) {
   var coerce = prop.options.coerce;
   if (!coerce) {
     return value;
   }
-  if (typeof coerce === 'function') {
-    return coerce(value);
-  } else {
-    process.env.NODE_ENV !== 'production' && warn('Invalid coerce for prop "' + prop.name + '": expected function, got ' + typeof coerce + '.', vm);
-    return value;
-  }
+  // coerce is a function
+  return coerce(value);
 }
 
 /**
@@ -32195,9 +32121,10 @@ var transition$1 = {
     // resolve on owner vm
     var hooks = resolveAsset(this.vm.$options, 'transitions', id);
     id = id || 'v';
-    oldId = oldId || 'v';
     el.__v_trans = new Transition(el, id, hooks, this.vm);
-    removeClass(el, oldId + '-transition');
+    if (oldId) {
+      removeClass(el, oldId + '-transition');
+    }
     addClass(el, id + '-transition');
   }
 };
@@ -32622,7 +32549,7 @@ function makeTextNodeLinkFn(tokens, frag) {
           if (token.html) {
             replace(node, parseTemplate(value, true));
           } else {
-            node.data = _toString(value);
+            node.data = value;
           }
         } else {
           vm._bindDir(token.descriptor, node, host, scope);
@@ -33606,7 +33533,7 @@ function eventsMixin (Vue) {
   };
 }
 
-function noop$1() {}
+function noop() {}
 
 /**
  * A directive links a DOM element with a piece of data,
@@ -33705,7 +33632,7 @@ Directive.prototype._bind = function () {
         }
       };
     } else {
-      this._update = noop$1;
+      this._update = noop;
     }
     var preProcess = this._preProcess ? bind(this._preProcess, this) : null;
     var postProcess = this._postProcess ? bind(this._postProcess, this) : null;
@@ -35143,7 +35070,7 @@ var filters = {
 
   json: {
     read: function read(value, indent) {
-      return typeof value === 'string' ? value : JSON.stringify(value, null, arguments.length > 1 ? indent : 2);
+      return typeof value === 'string' ? value : JSON.stringify(value, null, Number(indent) || 2);
     },
     write: function write(value) {
       try {
@@ -35401,9 +35328,7 @@ function installGlobalAPI (Vue) {
           }
         }
         if (type === 'component' && isPlainObject(definition)) {
-          if (!definition.name) {
-            definition.name = id;
-          }
+          definition.name = id;
           definition = Vue.extend(definition);
         }
         this.options[type + 's'][id] = definition;
@@ -35418,7 +35343,7 @@ function installGlobalAPI (Vue) {
 
 installGlobalAPI(Vue);
 
-Vue.version = '1.0.25';
+Vue.version = '1.0.24';
 
 // devtools global hook
 /* istanbul ignore next */
@@ -35481,7 +35406,7 @@ $('#fullpage').fullpage({
     responsiveWidth: 10000,
     responsiveHeight: 10000,
     scrollingSpeed: 1000,
-    touchSensitivity: 15,
+    touchSensitivity: 10000000,
     autoScrolling: true,
 
     afterRender: function afterRender() {
