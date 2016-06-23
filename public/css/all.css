@@ -6931,9 +6931,21 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   left: -2em; }
   @media (min-width: 1200px) {
     .overview-logo-sm {
-      width: 100%;
+      width: 88%;
       position: relative;
       left: -5em; } }
+  @media (max-width: 1200px) {
+    .overview-logo-sm {
+      width: 88%;
+      margin-left: -70px; } }    
+  @media (max-width: 992px) {
+    .overview-logo-sm {
+      width: 88%;
+      margin-left: -53px; } }
+  @media (max-width: 960px) {
+    .overview-logo-sm {
+      width: 88%;
+      margin-left: 0px; } }        
 
 .overview-logo {
   display: none; }
