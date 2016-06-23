@@ -35471,18 +35471,16 @@ require('./fullpage-scroll');
 // Mobile
 // function mobileFullPage() {
 $('#fullpage').fullpage({
-    //anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
-    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'updates'],
+    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
     menu: '#menu',
     css3: true,
     navigation: true,
     navigationPosition: 'left',
     animateAnchor: false,
-    //navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
-    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Updates'],
-    responsiveWidth: 1024,
+    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+    responsiveWidth: 10000,
     responsiveHeight: 10000,
-    scrollingSpeed: 10000,
+    scrollingSpeed: 1000,
     touchSensitivity: 15,
     autoScrolling: true,
 
@@ -35499,7 +35497,7 @@ $('#fullpage').fullpage({
                 mobileFirst: true,
                 slidesToScroll: 1,
                 responsive: [{
-                    breakpoint: 900,
+                    breakpoint: 480,
                     settings: 'unslick'
                 }]
             });
