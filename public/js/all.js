@@ -35396,13 +35396,15 @@ require('./fullpage-scroll');
 // Mobile
 // function mobileFullPage() {
 $('#fullpage').fullpage({
-    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
+    //anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'locations', 'updates'],
+    anchors: ['overview', 'students', 'education', 'employment', 'organizations', 'accountability', 'updates'],
     menu: '#menu',
     css3: true,
     navigation: true,
     navigationPosition: 'left',
     animateAnchor: false,
-    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+    //navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Locations', 'Updates'],
+    navigationTooltips: ['Overview', 'Students', 'Education', 'Employment', 'Organizations', 'Accountability', 'Updates'],
     responsiveWidth: 1024,
     responsiveHeight: 768,
     scrollingSpeed: 1500,
