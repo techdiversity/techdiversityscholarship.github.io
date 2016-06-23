@@ -6239,14 +6239,9 @@ table {
       display: none; } }
 
 .btn-desktop {
-
   display: -ms-flexbox;
   display: flex;
   margin: 30px 114px 0 0px; }
-  @media (min-width: 768px) {
-    .btn-desktop {
-      display: -ms-flexbox;
-      display: flex; } }
 
 .btn-link {
   transition: opacity 250ms ease;
@@ -6578,7 +6573,7 @@ p {
   font-size: 1.2em;
   line-height: 1.2em;
   text-align: left;
-  font-weight: normal; }
+  font-weight: bold; }
 
 .content {
   /*position: relative;
@@ -6786,8 +6781,8 @@ html.fp-enabled,
 #fp-nav ul li,
 .fp-slidesNav ul li {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 13px;
   margin: 7px;
   position: relative; }
 
@@ -6809,8 +6804,8 @@ html.fp-enabled,
 .fp-slidesNav ul li a.active span,
 #fp-nav ul li:hover a.active span,
 .fp-slidesNav ul li:hover a.active span {
-  height: 12px;
-  width: 12px;
+  height: 18px;
+  width: 18px;
   opacity: 1;
   background: #ffffff;
   border-radius: 100%;
@@ -6822,8 +6817,8 @@ html.fp-enabled,
   border-radius: 50%;
   position: absolute;
   z-index: 1;
-  height: 10px;
-  width: 10px;
+  height: 18px;
+  width: 18px;
   border: 0;
   background: #ccc;
   opacity: .5;
@@ -6853,7 +6848,7 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 
 #fp-nav ul li .fp-tooltip {
   position: absolute;
-  top: -10px;
+  top: -2px;
   color: #fff;
   font-size: 14px;
   font-family: arial, helvetica, sans-serif;
@@ -6875,7 +6870,7 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 
 #fp-nav ul li .fp-tooltip.left {
   left: 30px;
-  top: 2px; }
+  top: 8px; }
 
 .header-top {
   height: 10px;
@@ -6931,28 +6926,24 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
   left: -2em; }
   @media (min-width: 1200px) {
     .overview-logo-sm {
-      width: 88%;
+      width: 100%;
       position: relative;
       left: -5em; } }
-  @media (max-width: 1200px) {
-    .overview-logo-sm {
-      width: 88%;
-      margin-left: -70px; } }    
-  @media (max-width: 992px) {
-    .overview-logo-sm {
-      width: 88%;
-      margin-left: -53px; } }
-  @media (max-width: 960px) {
-    .overview-logo-sm {
-      width: 88%;
-      margin-left: 0px; } }        
 
 .overview-logo {
   display: none; }
+  @media (min-width: 992px) {
+    .overview-logo {
+      width: 500px; } }
+  @media (min-width: 1200px) {
+    .overview-logo {
+      display: block;
+      width: 500px; } }
+
 
 .overview-logo img, .overview-logo-sm img {
-  width: 100%;
-  max-width: 450px; }
+  width: 88%;
+  max-width: 500px; }
 
 .featured {
   display: none; }
@@ -7084,8 +7075,8 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 .section p {
   font-family: 'Gentium Book Basic', sans-serif;
   color: #526c79;
-  line-height: 2em;
-  font-size: 1.1em;
+  line-height: 1.5em;
+  font-size: 1.2em;
   opacity: 0.8; }
 
 @media (min-width: 1200px) {
