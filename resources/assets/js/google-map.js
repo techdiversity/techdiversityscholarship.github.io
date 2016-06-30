@@ -1,38 +1,7 @@
 var map;
 var activeInfoWindow;
 function initMap() {
-    var customMapType = new google.maps.StyledMapType([
-      {
-        stylers: [
-          // {hue: '#546e7b'},
-          // {hue: '#536d7a'},
-          {visibility: 'simplified'},
-          // {gamma: 50},
-          {weight: 0},
-          { hue: "#526c79" },
-            { saturation: 0 },
-            { lightness: 0 }
-        ]
-      },
-      {
-        elementType: 'labels',
-        stylers: [{color: '#1e3847'}, {weight: .25}]
-      },
-      {
-        featureType: 'water',
-        stylers: [{color: '#a5c2d0'}]
-    },
-    {
-  featureType: 'landscape',
-  elementType: 'all',
-  stylers: [
-      { hue: '#c5e2f0' },
-      { saturation: 44 },
-      { lightness: -4 },
-      {visibility: 'simplified'}
-  ]
-  },
-    ], {
+    var customMapType = new google.maps.StyledMapType([{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#99b7c5"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#526c79"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"color":"#99b7c5"}]}], {
       name: 'Custom Style'
   });
   var customMapTypeId = 'custom_style';
@@ -117,7 +86,7 @@ var greenville = new google.maps.LatLng(34.852618, -82.39401);
       fnPlaceMarkers(houston,"Houston", houstonSponsors);
 
       // Indianapolis
-      var indianapolis = new google.maps.LatLng(39.768403, -86.158068);
+      var indianapolis = new google.maps.LatLng(60.3322323, -86.158068);
       var indianapolisSponsors = "Indianapolis sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
       fnPlaceMarkers(indianapolis,"Indianapolis", indianapolisSponsors);
 
