@@ -6719,6 +6719,9 @@ html.fp-enabled,
   font-family: 'Glyphicons Halflings'; }
   @media (min-width: 960px) {
     .fp-controlArrow.fp-prev {
+      left: 30px; } }
+  @media (min-width: 1350px) {
+    .fp-controlArrow.fp-prev {
       left: 70px; } }
   .fp-controlArrow.fp-prev:focus, .fp-controlArrow.fp-prev:hover {
     opacity: 0.8; }
@@ -6932,18 +6935,10 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 
 .overview-logo {
   display: none; }
-  @media (min-width: 992px) {
-    .overview-logo {
-      width: 500px; } }
-  @media (min-width: 1200px) {
-    .overview-logo {
-      display: block;
-      width: 500px; } }
-
 
 .overview-logo img, .overview-logo-sm img {
-  width: 88%;
-  max-width: 500px; }
+  width: 100%;
+  max-width: 400px; }
 
 .featured {
   display: none; }
