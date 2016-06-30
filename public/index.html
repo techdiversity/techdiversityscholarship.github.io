@@ -26,7 +26,7 @@
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
+
 	  ga('create', 'UA-79842013-1', 'auto');
 	  ga('send', 'pageview');
 	</script>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="section-split ">
-					
+
 					<!-- <a href="https://theironyard.typeform.com/to/ogXoq7" class="btn btn-mobile">Apply Today</a> -->
 				</div>
 			</div>
@@ -98,7 +98,7 @@
 					<template  v-for="student in students">
 						<div class="featured" v-bind:class="{ 'visible': student.slide == 1 }">
 							<div class="content-image">
-								<img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
 							</div>
 							<div class="content-info">
 								<h2>{{ student.title }}</h2>
@@ -119,7 +119,7 @@
 					<template class="student-feature" v-for="student in students">
 						<div class="featured student-feature-two" v-bind:class="{ 'visible': student.slide == 2 }">
 							<div class="content-image">
-								<img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
 							</div>
 							<div class="content-info">
 								<h2>{{ student.title }}</h2>
@@ -227,7 +227,7 @@ are committing to providing access to tech education by reserving spots in their
 						<div class="section-content">
 							<h2>The Commitment:</h2>
 							<h1>Civic Partners</h1>
-							<p>Civic Partners like nonprofits, workforce development agencies and government bodies will work with the Tech Opportunity Fund to meet the full needs of students. These partners are committing to taking measurable actions to support scholarship recipients including providing financial aid, subsidizing short-term housing, assisting with access to transportation and providing free counseling. 
+							<p>Civic Partners like nonprofits, workforce development agencies and government bodies will work with the Tech Opportunity Fund to meet the full needs of students. These partners are committing to taking measurable actions to support scholarship recipients including providing financial aid, subsidizing short-term housing, assisting with access to transportation and providing free counseling.
 
 The White House has endorsed this program and is actively encouraging as many cities as possible to participate.</p>
 							<div class="section-sponsers">
