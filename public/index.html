@@ -261,14 +261,14 @@
 			<div class="section-content section-location">
 				<div id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="accordion-collapse collapsed">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion-collapse">
 							<div class="panel-heading" role="tab" id="headingOne">
 								<h4 class="panel-title">
 									<h1>Education Partner Locations</h1>
 								</h4>
 							</div>
 						</a>
-						<div id="collapseOne" class="panel-collapse collapse section-collapsed" role="tabpanel" aria-labelledby="headingOne">
+						<div id="collapseOne" class="panel-collapse collapse section-collapsed in" role="tabpanel" aria-labelledby="headingOne">
 							<p>Tech Opportunity Fund scholarships will be awarded for students to attend participating code schools including The Iron Yard and Code Fellows. Below are the campus locations across the U.S.:</p>
 						</div>
 					</div>
@@ -556,6 +556,11 @@
 		var nashvilleSponsors = "The Iron Yard";
 		fnPlaceMarkers(nashville,"Nashville", nashvilleSponsors, "https://www.theironyard.com/locations/nashville.html");
 
+		// Portland
+		var portland = new google.maps.LatLng(45.323062, -122.676482);
+		var portlandSponsors = "Code Fellows";
+		fnPlaceMarkers(portland,"Portland", portlandSponsors, "https://www.codefellows.org/locations/learn-to-code-in-portland");
+
 		// Raleigh
 		var raleigh = new google.maps.LatLng(35.579590, -78.638179);
 		var raleighSponsors = "The Iron Yard";
@@ -570,6 +575,11 @@
 		var sanAntonio = new google.maps.LatLng(29.224122, -98.493628);
 		var sanAntonioSponsors = "The Iron Yard";
 		fnPlaceMarkers(sanAntonio,"San Antonio", sanAntonioSponsors, "https://www.theironyard.com/locations/san-antonio.html");
+
+		// Seattle
+		var seattle = new google.maps.LatLng(47.506209, -122.332071);
+		var seattleSponsers = "Code Fellows";
+		fnPlaceMarkers(seattle,"Seattle", seattleSponsers, "https://www.codefellows.org/locations/learn-to-code-in-seattle");
 
 		// Washington DC
 		var washingtonDc = new google.maps.LatLng(38.707192, -77.036871);
@@ -597,7 +607,7 @@
 			// -----------------------
 
 			// add content to your InfoWindow
-			infoWnd.setContent('<div class="location"><a href="'+ cityLink + '" class="location-title">' + myCityName + '</a><span class="sponsors"><br>hosted by:<span>' + citySponsors + '</span></span></div>');
+			infoWnd.setContent('<div class="location"><a href="'+ cityLink + '" class="location-title">' + myCityName + '</a><span class="sponsors"><br>Hosted by:<span>' + citySponsors + '</span></span></div>');
 
 			// add listener on InfoWindow for mouseover event
 			google.maps.event.addListener(marker, 'mouseover', function() {
@@ -625,7 +635,7 @@
 			// --------------------------------
 
 			// add content to InfoWindow for click event
-			infoWnd2.setContent('<div class="location"><a href="'+ cityLink +'" class="location-title">' + myCityName + '</a><span class="sponsors"><br>hosted by:<span>' + citySponsors + '</span></span></div>');
+			infoWnd2.setContent('<div class="location"><a href="'+ cityLink +'" class="location-title">' + myCityName + '</a><span class="sponsors"><br>Hosted by:<span>' + citySponsors + '</span></span></div>');
 
 			// add listener on InfoWindow for click event
 			google.maps.event.addListener(marker, 'click', function() {
