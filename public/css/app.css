@@ -7519,6 +7519,7 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
     padding: 15px;
     padding-left: 0; }
   .section-location .panel {
+    box-shadow: none;
     margin-bottom: 0;
     background-color: transparent;
     border: none; }
@@ -7584,12 +7585,13 @@ body[class^="fp-viewing-employment"] .fp-slidesNav ul li:hover a.active span {
 .collapsing {
   transition-duration: 0ms; }
 
-.section-collapsed {
-  background-color: rgba(255, 255, 255, 0.8); }
-  .section-collapsed.in p {
-    padding: 5px 30px 20px 30px; }
-  .section-collapsed.collapsing p {
-    padding: 5px 30px 20px 30px; }
+@media (min-width: 960px) {
+  .section-collapsed {
+    background-color: rgba(255, 255, 255, 0.8); }
+    .section-collapsed.in p {
+      padding: 5px 30px 20px 30px; }
+    .section-collapsed.collapsing p {
+      padding: 5px 30px 20px 30px; } }
 
 .section .footer-top, .footer-left, .footer-right, .footer-bottom {
   display: -ms-flexbox;

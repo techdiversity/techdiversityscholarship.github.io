@@ -10190,7 +10190,7 @@ $('#fullpage').fullpage({
                 mobileFirst: true,
                 slidesToScroll: 1,
                 responsive: [{
-                    breakpoint: 480,
+                    breakpoint: 960,
                     settings: 'unslick'
                 }]
             });
