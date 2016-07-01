@@ -31,6 +31,9 @@ html.fp-enabled,
     box-sizing: border-box;
     height:100%;
 }
+.fp-tableCell {
+    text-align: center;
+}
 .fp-slide {
     float: left;
 }
@@ -79,6 +82,10 @@ html.fp-enabled,
     font-family: 'Glyphicons Halflings';
 
     @include breakpoint(tablet) {
+        left: 30px;
+    }
+
+    @include breakpoint(desktop-lg) {
         left: 70px;
     }
 

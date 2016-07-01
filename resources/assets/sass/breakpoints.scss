@@ -1,5 +1,6 @@
 @mixin breakpoint($point, $orientation: null) {
     $pointsToSizes: (
+        desktop-lg: 1350px,
         desktop: $screen-lg-desktop,
         laptop: $screen-md-min,
         tablet: 960px,

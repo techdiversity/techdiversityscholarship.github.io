@@ -12,28 +12,8 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700"/>
 	<link rel="stylesheet" type="text/css" href="css/all.css" />
-
-	<style>
-    .fp-tableCell {
-        text-align: center;
-    }
-	</style>
-
-	<!-- Google Analytics! -->
-
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
-	  ga('create', 'UA-79842013-1', 'auto');
-	  ga('send', 'pageview');
-	</script>
-
 </head>
 <body>
-
 
 <div id="fullpage">
 	<div class="section overview" id="section0">
@@ -45,24 +25,15 @@
 						<div class="overview-logo-sm">
 							<img src="images/logos/tech-opportunity-logo.png" alt="Logo: Tech Diversity" />
 						</div>
-						<!-- <div class="overview-logo">
-							<img src="images/logos/tech-opportunity-logo-white.png" alt="Logo: Tech Diversity" />
-						</div> -->
 						<p>The Tech Opportunity Fund is the product of a public-private partnership of organizations committed to providing access to technology education for all. The Fund is designed to remove financial barriers for people who are underrepresented in the technology industry, including but not limited to: women, people of color, military personnel and people with disabilities. Students with financial need are encouraged to apply to receive a full-tuition scholarship to attend a full-time, immersive code school and take the first step toward a fulfilling career in technology.</p>
-
 						<p class="app-coming-soon">Applications will open Fall 2016.</p>
-						<!-- <a href="https://theironyard.typeform.com/to/ogXoq7" class="btn btn-desktop">Apply Today</a> -->
+
 
 						<a class="btn btn-desktop typeform-share link" href="https://theironyard.typeform.com/to/ghD9qw" data-mode="1" target="_blank">Sign Up for Updates</a>
 						<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
-
-
 					</div>
 				</div>
-				<div class="section-split ">
-					
-					<!-- <a href="https://theironyard.typeform.com/to/ogXoq7" class="btn btn-mobile">Apply Today</a> -->
-				</div>
+				<div class="section-split"></div>
 			</div>
 			<div class="slide-overlay left overview"></div>
 			<!--<div class="header-bottom">
@@ -103,7 +74,7 @@
 					<template  v-for="student in students">
 						<div class="featured" v-bind:class="{ 'visible': student.slide == 1 }">
 							<div class="content-image">
-								<img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
 							</div>
 							<div class="content-info">
 								<h2>{{ student.title }}</h2>
@@ -124,7 +95,7 @@
 					<template class="student-feature" v-for="student in students">
 						<div class="featured student-feature-two" v-bind:class="{ 'visible': student.slide == 2 }">
 							<div class="content-image">
-								<img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
 							</div>
 							<div class="content-info">
 								<h2>{{ student.title }}</h2>
@@ -160,10 +131,7 @@
 						<div class="section-content">
 							<h2>The Commitment:</h2>
 							<h1>Education Partners</h1>
-							<p>
-								Through accelerated, results-driven education, code schools are an effective model for creating pathways to quality, well-paying tech jobs. The Tech Opportunity Fund’s Education Partners
-are committing to providing access to tech education by reserving spots in their classes for those underrepresented in the tech industry and who demonstrate financial need.
-							</p>
+							<p>Through accelerated, results-driven education, code schools are an effective model for creating pathways to quality, well-paying tech jobs. The Tech Opportunity Fund’s Education Partners are committing to providing access to tech education by reserving spots in their classes for those underrepresented in the tech industry and who demonstrate financial need.</p>
 							<div class="section-sponsers">
 								<div class="section-sponser-image">
 									<img src="images/logos/tiy-logo.png" alt="Logo: The Iron Yard" />
@@ -239,9 +207,7 @@ are committing to providing access to tech education by reserving spots in their
 						<div class="section-content">
 							<h2>The Commitment:</h2>
 							<h1>Civic Partners</h1>
-							<p>Civic Partners like nonprofits, workforce development agencies and government bodies will work with the Tech Opportunity Fund to meet the full needs of students. These partners are committing to taking measurable actions to support scholarship recipients including providing financial aid, subsidizing short-term housing, assisting with access to transportation and providing free counseling. 
-
-The White House has endorsed this program and is actively encouraging as many cities as possible to participate.</p>
+							<p>Civic Partners like nonprofits, workforce development agencies and government bodies will work with the Tech Opportunity Fund to meet the full needs of students. These partners are committing to taking measurable actions to support scholarship recipients including providing financial aid, subsidizing short-term housing, assisting with access to transportation and providing free counseling. The White House has endorsed this program and is actively encouraging as many cities as possible to participate.</p>
 							<div class="section-sponsers">
 								<div class="section-sponser-image">
 									<img src="images/logos/white-house-logo-2.png" alt="Logo: The White House" />
@@ -290,11 +256,28 @@ The White House has endorsed this program and is actively encouraging as many ci
 			<div class="slide-overlay left accountability"></div>
 		</div>
 	</div>
-	<!-- <div class="section" id="section6">
-		<h1>Education Partner Locations</h1>
-		<p>Tech Opportunity Fund scholarships will be awarded for students to attend participating code schools including The Iron Yard and Code Fellows. Below are the campus locations across the U.S.:</p>
-		<div id="map" class="map content"></div>
-	</div> -->
+	<div class="section" id="section6">
+		<div class="section-map">
+			<div class="section-content section-location">
+				<div id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="accordion-collapse collapsed">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<h1>Education Partner Locations</h1>
+								</h4>
+							</div>
+						</a>
+						<div id="collapseOne" class="panel-collapse collapse section-collapsed" role="tabpanel" aria-labelledby="headingOne">
+							<p>Tech Opportunity Fund scholarships will be awarded for students to attend participating code schools including The Iron Yard and Code Fellows. Below are the campus locations across the U.S.:</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="map" class="map content"></div>
+		</div>
+	</div>
 	<div class="section fp-auto-height" id="section7">
 		<div class="container">
 			<div id="footer-top" class="footer-top">
@@ -303,261 +286,375 @@ The White House has endorsed this program and is actively encouraging as many ci
 					<p>Sign up for the Tech Opportunity Fund email list to receive announcements, new partners, and city additions, or contact the Tech Opportunity Fund at <a href="mailto:techopportunityfund@theironyard.com">techopportunityfund@theironyard.com</a> </p>
 				</div>
 				<div class="footer-right">
-					<!-- <input type="text" name="mail" value="Email Address" id="footer-right-input"> -->
-					<!-- <input type="submit" value="Submit Email" class="btn"> -->
 					<a class="btn btn-desktop typeform-share link" href="https://theironyard.typeform.com/to/ghD9qw" data-mode="1" target="_blank">Sign Up</a>
-<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
-
-
+					<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
 				</div>
 			</div>
 		</div>
 		<div class="footer-bottom">
 			<p>Copyright © 2016 Tech Opportunity Fund</p>
-			<!-- <p>Privacy | Terms of Service </p> -->
 		</div>
-      </div>
+    </div>
 </div>
-
 
 <script type="text/javascript" src="js/all.js"></script>
 <script>
-      var map;
-      var activeInfoWindow;
-      function initMap() {
-          var customMapType = new google.maps.StyledMapType([
-            {
-              stylers: [
-                // {hue: '#546e7b'},
-                // {hue: '#536d7a'},
-                {visibility: 'simplified'},
-                // {gamma: 50},
-                {weight: 0},
-				{ hue: "#526c79" },
-			      { saturation: 0 },
-			      { lightness: 0 }
-              ]
-            },
-            {
-              elementType: 'labels',
-              stylers: [{color: '#1e3847'}, {weight: .25}]
-            },
-            {
-              featureType: 'water',
-              stylers: [{color: '#a5c2d0'}]
-		  },
-		  {
-		featureType: 'landscape',
-		elementType: 'all',
-		stylers: [
-			{ hue: '#c5e2f0' },
-			{ saturation: 44 },
-			{ lightness: -4 },
-			{visibility: 'simplified'}
-		]
-		},
-          ], {
+    var map;
+    var activeInfoWindow;
+    function initMap() {
+		// Custom Map Styles
+        var customMapType = new google.maps.StyledMapType([
+			{
+				"featureType": "administrative",
+			  	"elementType": "labels.text.fill",
+			  	"stylers": [
+					{
+						"color":"#444444"
+					}
+				]
+			},
+			{
+				"featureType": "landscape",
+				"elementType": "all",
+				"stylers": [
+					{
+						"color": "#f2f2f2"
+					}
+				]
+			},
+			{
+				"featureType": "landscape.natural.landcover",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#f2f2f2"
+					}
+				]
+			},
+			{
+				"featureType": "poi",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "road",
+				"elementType": "all",
+				"stylers": [
+					{
+						"saturation": -100
+					},
+					{
+						"lightness": 45
+					}
+				]
+			},
+			{
+				"featureType": "road.highway",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "simplified"
+					}
+				]
+			},
+			{
+				"featureType": "road.arterial",
+				"elementType": "labels.icon",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "transit",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "all",
+				"stylers": [
+					{
+						"color": "#46bcec"
+					},
+					{
+						"visibility": "on"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#99b7c5"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#526c79"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "labels.text.stroke",
+				"stylers": [
+					{
+						"color": "#99b7c5"
+					}
+				]
+			}
+		],
+		{
             name: 'Custom Style'
         });
         var customMapTypeId = 'custom_style';
 
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.09024, lng: -95.712891},
-          zoom: 5,
-          maxZoom: 5,
-          minZoom: 5,
-          scrollwheel: false,
-          navigationControl: false,
-          mapTypeControl: false,
-          scaleControl: false,
-          draggable: true,
-          mapTypeControlOptions: {
-              mapTypeIds: [google.maps.MapTypeId.TERRAIN, customMapTypeId]
-            }
-        });
+			center: {lat: 37.09024, lng: -95.712891},
+			zoom: 5,
+			maxZoom: 10,
+			minZoom: 3,
+			scrollwheel: false,
+			navigationControl: false,
+			mapTypeControl: false,
+			scaleControl: false,
+			draggable: true,
+			mapTypeControlOptions: {
+				mapTypeIds: [google.maps.MapTypeId.TERRAIN, customMapTypeId]
+			}
+		});
+
+		function changeMap() {
+			var center = map.getCenter();
+		    google.maps.event.trigger(map, "resize");
+			var latCenter = 33.548995,
+				longCenter = -84.387982;
+
+			var windowWidth = $(window).width();
+
+			if (windowWidth > 900) {
+				latCenter = 37.09024;
+				longCenter = -95.712891;
+			}
+
+			if (windowWidth > 1300) {
+				map.setZoom(4);
+				latCenter = 35.969941;
+				longCenter = -115.13983;
+			} else {
+				map.setZoom(5);
+			}
+
+			var newCenter = new google.maps.LatLng(latCenter, longCenter);
+		    map.setCenter(newCenter);
+		};
+
+		changeMap();
+		// var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		// this is our gem
+		google.maps.event.addDomListener(window, "resize", function() {
+		    changeMap();
+		});
 
         map.mapTypes.set(customMapTypeId, customMapType);
-          map.setMapTypeId(customMapTypeId);
+		map.setMapTypeId(customMapTypeId);
 
-      // Locations & Sponsors
-            // Atlanta Downtown
-      var atlanta = new google.maps.LatLng(33.748995,-84.387982);
-            var atlantaSponsors = "Sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(atlanta,"Atlanta Downtown", atlantaSponsors);
+		// Locations & Sponsors
+		// Atlanta Downtown
+		var atlanta = new google.maps.LatLng(33.548995,-84.387982);
+		var atlantaSponsors = "The Iron Yard";
+		fnPlaceMarkers(atlanta,"Atlanta Downtown", atlantaSponsors);
 
-            // Atlanta Perimeter
-      var atlantaPerimeter = new google.maps.LatLng(33.956215, -83.987962);
-            var atlantaPerimeterSponsors = "Atlanta Perimeter sponsor" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(atlantaPerimeter,"Atlanta Perimeter", atlantaPerimeterSponsors);
+		// Atlanta Perimeter
+		var atlantaPerimeter = new google.maps.LatLng(33.756215, -83.987962);
+		var atlantaPerimeterSponsors = "The Iron Yard";
+		fnPlaceMarkers(atlantaPerimeter,"Atlanta Perimeter", atlantaPerimeterSponsors);
 
-            // Austin
-      var austin = new google.maps.LatLng(30.267153, -97.743061);
-            var austinSponsors = "Sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(austin,"Austin", austinSponsors);
+		// Austin
+		var austin = new google.maps.LatLng(30.067153, -97.743061);
+		var austinSponsors = "The Iron Yard";
+		fnPlaceMarkers(austin,"Austin", austinSponsors);
 
-            // Charleston
-      var charleston = new google.maps.LatLng(32.776475, -79.931051);
-            var charlestonSponsors = "Charleston 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(charleston,"Charleston", charlestonSponsors);
+		// Charleston
+		var charleston = new google.maps.LatLng(32.576475, -79.931051);
+		var charlestonSponsors = "The Iron Yard";
+		fnPlaceMarkers(charleston,"Charleston", charlestonSponsors);
 
-            // Charlotte
-      var charlotte = new google.maps.LatLng(35.227087, -80.843127);
-            var charlotteSponsors = "Charlotte 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(charlotte,"Charlotte", charlotteSponsors);
+		// Charlotte
+		var charlotte = new google.maps.LatLng(35.027087, -80.843127);
+		var charlotteSponsors = "The Iron Yard";
+		fnPlaceMarkers(charlotte,"Charlotte", charlotteSponsors);
 
-            // Cincinnati
-      var cincinnati = new google.maps.LatLng(39.103118, -84.51202);
-            var cincinnatiSponsors = "Cincinnati 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(cincinnati,"Cincinnati", cincinnatiSponsors);
+		// Cincinnati
+		var cincinnati = new google.maps.LatLng(38.903118, -84.51202);
+		var cincinnatiSponsors = "The Iron Yard";
+		fnPlaceMarkers(cincinnati,"Cincinnati", cincinnatiSponsors);
 
-            // Columbia
-      var columbia = new google.maps.LatLng(34.000710, -81.034814);
-            var columbiaSponsors = "Columbia 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(columbia,"Columbia", columbiaSponsors);
+		// Columbia
+		var columbia = new google.maps.LatLng(33.800710, -81.034814);
+		var columbiaSponsors = "The Iron Yard";
+		fnPlaceMarkers(columbia,"Columbia", columbiaSponsors);
 
-            // Dallas
-      var dallas = new google.maps.LatLng(32.776664, -96.796988);
-            var dallasSponsors = "Dallas 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(dallas,"Dallas", dallasSponsors);
+		// Dallas
+		var dallas = new google.maps.LatLng(32.576664, -96.796988);
+		var dallasSponsors = "The Iron Yard";
+		fnPlaceMarkers(dallas,"Dallas", dallasSponsors);
 
-            // Detroit
-      var detroit = new google.maps.LatLng(42.331427, -83.045754);
-            var detroitSponsors = "Detroit 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(detroit,"Detroit", detroitSponsors);
+		// Detroit
+		var detroit = new google.maps.LatLng(42.131427, -83.045754);
+		var detroitSponsors = "The Iron Yard";
+		fnPlaceMarkers(detroit,"Detroit", detroitSponsors);
 
-            // Durham
-      var durham = new google.maps.LatLng(35.994033, -78.898619);
-            var durhamSponsors = "Durham 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(durham,"Durham", durhamSponsors);
+		// Durham
+		var durham = new google.maps.LatLng(35.794033, -78.898619);
+		var durhamSponsors = "The Iron Yard";
+		fnPlaceMarkers(durham,"Durham", durhamSponsors);
 
-            // Greenville
-      var greenville = new google.maps.LatLng(34.852618, -82.39401);
-            var greenvilleSponsors = "Greenville 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(greenville,"Greenville", greenvilleSponsors);
+		// Greenville
+		var greenville = new google.maps.LatLng(34.652618, -82.39401);
+		var greenvilleSponsors = "The Iron Yard";
+		fnPlaceMarkers(greenville,"Greenville", greenvilleSponsors);
 
-            // Houston
-            var houston = new google.maps.LatLng(29.760427, -95.369803);
-            var houstonSponsors = "Houston sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(houston,"Houston", houstonSponsors);
+		// Houston
+		var houston = new google.maps.LatLng(29.560427, -95.369803);
+		var houstonSponsors = "The Iron Yard";
+		fnPlaceMarkers(houston,"Houston", houstonSponsors);
 
-            // Indianapolis
-            var indianapolis = new google.maps.LatLng(39.768403, -86.158068);
-            var indianapolisSponsors = "Indianapolis sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(indianapolis,"Indianapolis", indianapolisSponsors);
+		// Indianapolis
+		var indianapolis = new google.maps.LatLng(39.680228, -86.157476);
+		var indianapolisSponsors = "The Iron Yard";
+		fnPlaceMarkers(indianapolis,"Indianapolis", indianapolisSponsors);
 
-            // Las Vegas
-            var lasVegas = new google.maps.LatLng(36.169941, -115.13983);
-            var lasVegasSponsors = "Las Vegas sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(lasVegas,"Las Vegas", lasVegasSponsors);
+		// Las Vegas
+		var lasVegas = new google.maps.LatLng(35.969941, -115.13983);
+		var lasVegasSponsors = "The Iron Yard";
+		fnPlaceMarkers(lasVegas,"Las Vegas", lasVegasSponsors);
 
-            // Minneapolis
-            var minneapolis = new google.maps.LatLng(44.977753, -93.265011);
-            var minneapolisSponsors = "Minneapolis sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(minneapolis,"Minneapolis", minneapolisSponsors);
+		// Minneapolis
+		var minneapolis = new google.maps.LatLng(44.777753, -93.265011);
+		var minneapolisSponsors = "The Iron Yard";
+		fnPlaceMarkers(minneapolis,"Minneapolis", minneapolisSponsors);
 
-            // Nashville
-            var nashville = new google.maps.LatLng(36.162664, -86.781602);
-            var nashvilleSponsors = "Nashville sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(nashville,"Nashville", nashvilleSponsors);
+		// Nashville
+		var nashville = new google.maps.LatLng(35.962664, -86.781602);
+		var nashvilleSponsors = "The Iron Yard";
+		fnPlaceMarkers(nashville,"Nashville", nashvilleSponsors);
 
-            // Raleigh
-            var raleigh = new google.maps.LatLng(35.779590, -78.638179);
-            var raleighSponsors = "Raleigh sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(raleigh,"Raleigh", raleighSponsors);
+		// Raleigh
+		var raleigh = new google.maps.LatLng(35.579590, -78.638179);
+		var raleighSponsors = "The Iron Yard";
+		fnPlaceMarkers(raleigh,"Raleigh", raleighSponsors);
 
-            // Salt Lake City
-            var saltLakeCity = new google.maps.LatLng(40.760779, -111.891047);
-            var saltLakeCitySponsors = "Salt Lake City sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(saltLakeCity,"Salt Lake City", saltLakeCitySponsors);
+		// Salt Lake City
+		var saltLakeCity = new google.maps.LatLng(40.560779, -111.891047);
+		var saltLakeCitySponsors = "The Iron Yard";
+		fnPlaceMarkers(saltLakeCity,"Salt Lake City", saltLakeCitySponsors);
 
-            // San Antonio
-            var sanAntonio = new google.maps.LatLng(29.424122, -98.493628);
-            var sanAntonioSponsors = "San Antonio sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(sanAntonio,"San Antonio", sanAntonioSponsors);
+		// San Antonio
+		var sanAntonio = new google.maps.LatLng(29.224122, -98.493628);
+		var sanAntonioSponsors = "The Iron Yard";
+		fnPlaceMarkers(sanAntonio,"San Antonio", sanAntonioSponsors);
 
-            // Washington DC
-            var washingtonDc = new google.maps.LatLng(38.907192, -77.036871);
-            var washingtonDcSponsors = "Washington, DC sponsor 1" + "<br>" + "Sponsor 2" + "<br>" + "Sponsor 3";
-            fnPlaceMarkers(washingtonDc,"Washington, DC", washingtonDcSponsors);
+		// Washington DC
+		var washingtonDc = new google.maps.LatLng(38.707192, -77.036871);
+		var washingtonDcSponsors = "The Iron Yard";
+		fnPlaceMarkers(washingtonDc,"Washington, DC", washingtonDcSponsors);
 
+        function fnPlaceMarkers(myLocation,myCityName,citySponsors) {
 
-            function fnPlaceMarkers(myLocation,myCityName,citySponsors) {
+			var marker = new google.maps.Marker({
+				position: myLocation,
+			    icon: 'images/map/marker.png'
+			});
 
-      var marker = new google.maps.Marker({
-        position : myLocation,
-                icon: 'images/map/marker.png'
-      });
+			// Renders the marker on the specified map
+			marker.setMap(map);
 
-      // Renders the marker on the specified map
-      marker.setMap(map);
+			// create an InfoWindow - for mouseover
+			var infoWnd = new google.maps.InfoWindow();
 
-      // create an InfoWindow - for mouseover
-      var infoWnd = new google.maps.InfoWindow();
+			// create an InfoWindow -  for mouseclick
+			var infoWnd2 = new google.maps.InfoWindow();
 
-      // create an InfoWindow -  for mouseclick
-      var infoWnd2 = new google.maps.InfoWindow();
+			// -----------------------
+			// ON MOUSEOVER
+			// -----------------------
 
-      // -----------------------
-      // ON MOUSEOVER
-      // -----------------------
+			// add content to your InfoWindow
+			infoWnd.setContent('<div class="location"><a href="#" class="location-title">' + myCityName + '</a><span class="sponsors"><br>hosted by:<span>' + citySponsors + '</span></span></div>');
 
-      // add content to your InfoWindow
-      infoWnd.setContent('<div class="location">' + myCityName + '<span class="sponsors"><br/>' + citySponsors + '</span></div>');
+			// add listener on InfoWindow for mouseover event
+			google.maps.event.addListener(marker, 'mouseover', function() {
 
-      // add listener on InfoWindow for mouseover event
-      google.maps.event.addListener(marker, 'mouseover', function() {
+				// Close active window if exists - [one might expect this to be default behaviour no?]
+				if(activeInfoWindow != null) activeInfoWindow.close();
 
-        // Close active window if exists - [one might expect this to be default behaviour no?]
-        if(activeInfoWindow != null) activeInfoWindow.close();
+				// Close info Window on mouseclick if already opened
+				infoWnd2.close();
 
-        // Close info Window on mouseclick if already opened
-        infoWnd2.close();
+				// Open new InfoWindow for mouseover event
+				infoWnd.open(map, marker);
 
-        // Open new InfoWindow for mouseover event
-        infoWnd.open(map, marker);
+				// Store new open InfoWindow in global variable
+				activeInfoWindow = infoWnd;
+			});
 
-        // Store new open InfoWindow in global variable
-        activeInfoWindow = infoWnd;
-      });
+			// on mouseout (moved mouse off marker) make infoWindow disappear
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				infoWnd.close();
+			});
 
-      // on mouseout (moved mouse off marker) make infoWindow disappear
-      google.maps.event.addListener(marker, 'mouseout', function() {
-        infoWnd.close();
-      });
+			// --------------------------------
+			// ON MARKER CLICK - (Mouse click)
+			// --------------------------------
 
-      // --------------------------------
-      // ON MARKER CLICK - (Mouse click)
-      // --------------------------------
+			// add content to InfoWindow for click event
+			infoWnd2.setContent('<div class="location"><a href="#" class="location-title">' + myCityName + '</a><span class="sponsors"><br>hosted by:<span>' + citySponsors + '</span></span></div>');
 
-      // add content to InfoWindow for click event
-      infoWnd2.setContent('<div class="location">' + myCityName + '<span class="sponsors"><br/>' + citySponsors + '</span></div>');
+			// add listener on InfoWindow for click event
+			google.maps.event.addListener(marker, 'click', function() {
+				//Close active window if exists - [one might expect this to be default behaviour no?]
+				if(activeInfoWindow != null) activeInfoWindow.close();
 
-      // add listener on InfoWindow for click event
-      google.maps.event.addListener(marker, 'click', function() {
+				// Open InfoWindow - on click
+				infoWnd2.open(map, marker);
 
-        //Close active window if exists - [one might expect this to be default behaviour no?]
-        if(activeInfoWindow != null) activeInfoWindow.close();
+				// Close "mouseover" infoWindow
+				infoWnd.close();
 
-        // Open InfoWindow - on click
-        infoWnd2.open(map, marker);
+				// Store new open InfoWindow in global variable
+				activeInfoWindow = infoWnd2;
+			});
+	    }
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_Az0rlnaRhNOJO5eexSVWiBm0lxFUdYQ&callback=initMap" async defer></script>
 
-        // Close "mouseover" infoWindow
-        infoWnd.close();
+<!-- Google Analytics! -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        // Store new open InfoWindow in global variable
-        activeInfoWindow = infoWnd2;
-      });
-
-    }
-      }
-
-
-
-
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_Az0rlnaRhNOJO5eexSVWiBm0lxFUdYQ&callback=initMap"
-    async defer></script>
-
+	ga('create', 'UA-79842013-1', 'auto');
+	ga('send', 'pageview');
+</script>
 </body>
 </html>
