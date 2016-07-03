@@ -395,7 +395,7 @@
         &.overview {
             background-color: rgba(255, 255, 255, 0.9);
 
-            &:before { 
+            &:before {
                 border-bottom: 115vh solid rgba(255, 255, 255, 0.9);
                 border-left: 115vh solid rgba(255, 255, 255, 0.9);
             }
@@ -644,6 +644,11 @@
     }
 }
 
+// Locations
+#section6 {
+    position: relative;
+}
+
 // Updates
 #section7 {
     background: #526c79;
@@ -652,5 +657,169 @@
 
      .fp-tableCell {
          height: auto !important;
+    }
+}
+
+.section-location {
+    position: relative;
+    display: block;
+    order: 2;
+    align-items: flex-start;
+    z-index: 1;
+    padding: 30px;
+
+    @include breakpoint(tablet) {
+        width: 400px;
+        left: 10%;
+        top: 20%;
+        padding: 0;
+        position: absolute;
+        display: flex;
+        order: 1;
+    }
+
+    h1 {
+        font-size: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: #526c79;
+        font-weight: 700;
+
+        &:before {
+            content: "\002b";
+            display: none;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: 400;
+            margin-right: 10px;
+            padding: 3px 6px;
+            border-radius: 2px;
+            color: white;
+            background-color: rgba(149, 165, 178, 0.7);
+            width: 26px;
+            margin-right: 10px;
+
+            @include breakpoint(tablet) {
+                display: block;
+            }
+        }
+    }
+
+    a {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    p {
+        padding: 15px;
+        padding-left: 0;
+    }
+
+    .panel {
+        box-shadow: none;
+        margin-bottom: 0;
+        background-color: transparent;
+        border: none;
+    }
+
+    .panel-heading {
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding-left: 0;
+
+        @include breakpoint(tablet) {
+            padding-left: 5px;
+        }
+    }
+}
+
+.section-map {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint(tablet) {
+        display: block;
+    }
+}
+
+.map {
+    order: 1;
+    @include breakpoint(tablet) {
+        order: 2;
+    }
+}
+
+.collapse, .collapsed, .accordion-collapse {
+    @include breakpoint(tabletonly) {
+        display: block;
+        height: auto !important;
+        pointer-events: none;
+    }
+}
+
+.accordion-collapse {
+    @include breakpoint(tablet) {
+        .panel-heading {
+            width: 500px;
+        }
+
+        h1 {
+            font-size: 2em;
+            display: block;
+            padding-left: 25px;
+
+            &:before {
+                font-size: 16px;
+                content: "\2212";
+                display: block;
+                margin-bottom: 0.5em;
+                width: 28px;
+                position: relative;
+                left: -25px;
+            }
+        }
+
+        &.collapsed {
+            .panel-heading {
+                width: 275px;
+            }
+
+            h1 {
+                font-size: 16px;
+                display: flex;
+                padding-left: 0px;
+
+                &:before {
+                    content: "\002b";
+                    margin-bottom: 0;
+                    width: 26px;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+
+.collapsing {
+    transition-duration: 0ms;
+}
+
+@include breakpoint(tablet) {
+    .section-collapsed {
+        background-color: rgba(255, 255, 255, 0.8);
+
+        &.in {
+            p {
+                padding: 5px 30px 20px 30px;
+            }
+        }
+
+        &.collapsing {
+            p {
+                padding: 5px 30px 20px 30px;
+            }
+        }
     }
 }
