@@ -31,6 +31,9 @@ html.fp-enabled,
     box-sizing: border-box;
     height:100%;
 }
+.fp-tableCell {
+    text-align: center;
+}
 .fp-slide {
     float: left;
 }
@@ -75,8 +78,16 @@ html.fp-enabled,
 .fp-controlArrow.fp-prev {
     transition: opacity 250ms ease;
     opacity: 1;
-    left: 70px;
+    left: 0;
     font-family: 'Glyphicons Halflings';
+
+    @include breakpoint(tablet) {
+        left: 30px;
+    }
+
+    @include breakpoint(desktop-lg) {
+        left: 70px;
+    }
 
     &:focus,
     &:hover {
@@ -92,8 +103,12 @@ html.fp-enabled,
 .fp-controlArrow.fp-next {
     transition: opacity 250ms ease;
     opacity: 1;
-    right: 70px;
+    right: 26px;
     font-family: 'Glyphicons Halflings';
+
+    @include breakpoint(tablet) {
+        right: 70px;
+    }
 
     &:focus,
     &:hover {

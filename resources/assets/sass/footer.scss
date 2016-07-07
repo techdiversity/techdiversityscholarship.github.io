@@ -22,11 +22,12 @@
     background-color: #526c79;
     flex-direction: column;
     padding: 4em 0;
+    align-items: flex-start;
 
     @include breakpoint(tablet) {
         height: 230px;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-start;
     }
 }
 
@@ -35,6 +36,15 @@
     justify-content: flex-start;
     align-items: flex-start;
     max-width: 400px;
+
+    a {
+        color: #fff;
+        word-wrap: break-word;
+    }
+
+    p {
+        width: 100%;
+    }
 }
 
 .footer-right {
@@ -47,6 +57,7 @@
     @include breakpoint(tablet) {
         flex-direction: row;
         margin-top: 0;
+        margin-left: 4em;
     }
 }
 

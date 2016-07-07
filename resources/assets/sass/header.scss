@@ -46,31 +46,36 @@
     background-size: cover;
 
     @include breakpoint(tablet) {
-        background: url("../images/backgrounds/overview/overview-bg.jpg") center center;
+        background: url("../images/backgrounds/overview/overview-bg.jpg") center left;
         background-size: cover;
     }
 }
 
 .overview-logo-sm {
-    width: 100%;
+    text-align: left;
+    width: 85%;
+    margin-bottom: 2em;
+    left: -2em;
 
     @include breakpoint(desktop) {
-        display: none;
+        width: 100%;
+        position: relative;
+        left: -5em;
     }
 }
 
 .overview-logo {
     display: none;
 
-    @include breakpoint(laptop) {
-        width: 300px;
-    }
+    // @include breakpoint(laptop) {
+    //     width: 300px;
+    // }
 
 
-    @include breakpoint(desktop) {
-        display: block;
-        width: 400px;
-    }
+    // @include breakpoint(desktop) {
+    //     display: block;
+    //     width: 400px;
+    // }
 
 }
 

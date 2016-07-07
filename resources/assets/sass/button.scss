@@ -30,11 +30,11 @@
 }
 
 .btn-desktop {
-    display: none;
+    // display: none;
+    display: flex;
     margin: 30px 114px 0 0px;
 
     @include breakpoint(tablet) {
-        display: flex;
     }
 }
 

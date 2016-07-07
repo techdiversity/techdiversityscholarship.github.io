@@ -49,6 +49,7 @@ abbr,acronym { border: 0;
 body{
 	font-family: arial,helvetica;
 	color: #F2F2F2;
+	-webkit-font-smoothing: antialiased;
 }
 h1{
 	font-size: 6em;
@@ -101,6 +102,19 @@ p{
 	}
 }
 
+.overview {
+	.split-container-flex {
+		@include breakpoint(tablet) {
+			// padding-left: 100px;
+			align-items: flex-start;
+			justify-content: flex-end;
+		}
+
+		@include breakpoint(desktop) {
+			// padding-left: 15px;
+		}
+	}
+}
 
 .container-flex {
 	height: 100%;
@@ -122,4 +136,8 @@ p{
 	@include breakpoint(mobile) {
 		flex-direction: row;
 	}
+}
+
+#fullpage {
+	overflow: hidden;
 }
