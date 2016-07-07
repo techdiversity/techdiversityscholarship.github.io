@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Tech Opportunity Fund</title>
+	<meta name="description" content="The Tech Opportunity Fund is the product of a public-private partnership of organizations committed to providing access to technology education for all." />
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic,600italic,600" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700"/>
+	<link rel="stylesheet" type="text/css" href="css/all.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+
+<div id="fullpage">
+	<div class="section overview" id="section0">
+		<div class="content">
+			<div class="header-top"></div>
+			<div class="container container-flex split-container-flex">
+				<div class="section-split ">
+					<div class="section-content">
+						<div class="overview-logo-sm">
+							<img src="images/logos/tech-opportunity-logo.png" alt="Logo: Tech Diversity" />
+						</div>
+						<p>The Tech Opportunity Fund is the product of a public-private partnership of organizations committed to providing access to technology education for all. The Fund is designed to remove financial barriers for people who are underrepresented in the technology industry, including but not limited to: women, people of color, military personnel and people with disabilities. Students with financial need are encouraged to apply to receive a full-tuition scholarship to attend a full-time, immersive code school and take the first step toward a fulfilling career in technology.</p>
+						<p class="app-coming-soon">Applications will open Fall 2016.</p>
+
+
+						<a class="btn btn-desktop typeform-share link" href="https://theironyard.typeform.com/to/ghD9qw" data-mode="1" target="_blank">Sign Up for Updates</a>
+						<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+					</div>
+				</div>
+				<div class="section-split"></div>
+			</div>
+			<div class="slide-overlay left overview"></div>
+			<!--<div class="header-bottom">
+				<div class="container container-flex">
+					<div class="image-sponser">
+						<img src="images/logos/white-house-logo.png" alt="Logo: White House">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/wsj-logo.png" alt="Logo: Wall Street Journal">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/nbc-logo.png" alt="Logo: NBC">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/fastco-logo.png" alt="Logo: Fast Company">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/cnn-logo.png" alt="Logo: CNN">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/atlantic-logo.png" alt="Logo: The Atlantic">
+					</div>
+					<div class="image-sponser">
+						<img src="images/logos/abc-logo.png" alt="Logo: ABC">
+					</div>
+				</div>
+			</div>-->
+		</div>
+	</div>
+	<div class="section fp-auto-height" id="section1">
+		<div class="container">
+	        <div class="slide featured-slide" data-anchor="featured">
+				<div class="section-intro">
+					<h1>Student Success Stories</h1>
+					<p>Thousands of people have chosen code school programs as their path toward landing a job as a developer and launching a lifelong career in tech. Here are the stories of few graduates who have completed an immersive code school course and  landed their dream jobs.</p>
+				</div>
+				<div class="section-students js-slick-carousel">
+					<template  v-for="student in students">
+						<div class="featured" v-bind:class="{ 'visible': student.slide == 1 }">
+							<div class="content-image">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
+							</div>
+							<div class="content-info">
+								<h2>{{ student.title }}</h2>
+								<h1>{{ student.fullName }}</h1>
+								<p>{{ student.description }}</p>
+								<a v-bind:href="student.link" class="btn-link" @click="stopSmoothScroll()">Read {{ student.fullName }}'s story <i class="glyphicon glyphicon-chevron-right"></i></a>
+							</div>
+						</div>
+					</template>
+				</div>
+	        </div>
+	        <div class="slide featured-two" data-anchor="featured2">
+				<div class="section-intro">
+					<h1>Student Success Stories</h1>
+					<p>Thousands of people have chosen code school programs as their path toward landing a job as a developer and launching a lifelong career in tech. Here are the stories of few graduates who have completed an immersive code school course and  landed their dream jobs.</p>
+				</div>
+				<div class=" slick-carousel js-slick-carousel">
+					<template class="student-feature" v-for="student in students">
+						<div class="featured student-feature-two" v-bind:class="{ 'visible': student.slide == 2 }">
+							<div class="content-image">
+								<a v-bind:href="student.link" @click="stopSmoothScroll()"><img v-bind:src="student.image" class="student-image" alt="Image: {{ student.name }}"></a>
+							</div>
+							<div class="content-info">
+								<h2>{{ student.title }}</h2>
+								<h1>{{ student.fullName }}</h1>
+								<p>{{ student.description }}</p>
+								<a v-bind:href="student.link" class="btn-link" @click="stopSmoothScroll()">Read {{ student.fullName }}'s story</a>
+							</div>
+						</div>
+					</template>
+				</div>
+	        </div>
+	        <div class="slide full-student-bio" v-for="student in students" id="{{ student.name }}" data-anchor="{{ student.name }}">
+	            <div class="student-story">
+					<div class="student-story-left">
+						<img v-bind:src="student.image" alt="Image: {{ student.name }}">
+						<a href="#students/featured" class="btn-link" @click="stopSmoothScroll()"><i class="glyphicon glyphicon-chevron-left"></i> Read more stores like {{ student.name }}'s</a>
+					</div>
+					<div class="student-story-right">
+						<h1>{{ student.fullName }}</h1>
+						<h2>{{ student.title }}</h2>
+						<div class="student-bio"><p v-for="bio in student.bios">{{ bio }}<br></p></div>
+					</div>
+	            </div>
+	        </div>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="section-dash">
+			<div class="content">
+				<img src="images/backgrounds/education/education-bg-sm.png" alt="Image: Education classroom" class="section-dash-image"/>
+				<div class="container container-flex split-container-flex">
+					<div class="section-split">
+						<div class="section-content">
+							<h2>The Commitment:</h2>
+							<h1>Education Partners</h1>
+							<p>Through accelerated, results-driven education, code schools are an effective model for creating pathways to quality, well-paying tech jobs. The Tech Opportunity Fund’s Education Partners are committing to providing access to tech education by reserving spots in their classes for those underrepresented in the tech industry and who demonstrate financial need.</p>
+							<div class="section-sponsers">
+								<div class="section-sponser-image">
+									<img src="images/logos/tiy-logo.png" alt="Logo: The Iron Yard" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/code-fellows-logo.png" alt="Logo: Code Fellows" />
+								</div>
+								<!-- <div class="section-sponser-image">
+									<img src="images/logos/hack-reactor-logo.png" alt="Logo: Hack Reactor" />
+								</div> -->
+							</div>
+
+							<a class="typeform-share link btn-link" href="https://theironyard.typeform.com/to/wPp15z" data-mode="1" target="_blank">Interested in becoming an Education Partner?<i class="glyphicon glyphicon-chevron-right"></i></a>
+							<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+
+
+						</div>
+					</div>
+					<div class="section-split"></div>
+				</div>
+			</div>
+			<div class="slide-overlay left education"></div>
+		</div>
+	</div>
+	<div class="section " id="section3">
+		<div class="section-dash">
+			<div class="content">
+				<img src="images/backgrounds/employment/employment-bg-sm.png" alt="Image: Education classroom" class="section-dash-image"/>
+				<div class="container container-flex split-container-flex">
+					<div class="section-split">
+						<div class="section-content">
+							<h2>The Commitment:</h2>
+							<h1>Employment Partners</h1>
+							<p>Employment Partners can support the Tech Opportunity Fund by being open to hiring candidates from accelerated tech training programs. Companies can participate in a variety of ways, from contributing financially to the fund, supporting the in-class experience and, most importantly, building hiring and apprenticeship programs for scholarship recipients.</p>
+							<div class="section-sponsers">
+								<!-- <div class="section-sponser-image">
+									<img src="images/logos/google-logo.png" alt="Logo: Google" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/home-depot-logo.png" alt="Logo: Home Depot" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/microsoft-logo.png" alt="Logo: Microsoft" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/att-logo.png" alt="Logo: ATT" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/bmw-logo.png" alt="Logo: BMW" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/ibm-logo.png" alt="Logo: IBM" />
+								</div> -->
+							</div>
+
+							<a class="typeform-share link btn-link" href="https://theironyard.typeform.com/to/QTntg7" data-mode="1" target="_blank">Interested in becoming an Employment Partner?<i class="glyphicon glyphicon-chevron-right"></i></a>
+							<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+
+						</div>
+					</div>
+					<div class="section-split"></div>
+				</div>
+			</div>
+			<div class="slide-overlay left employment"></div>
+		</div>
+	</div>
+	<div class="section " id="section4">
+		<div class="section-dash">
+			<div class="content">
+				<img src="images/backgrounds/organizations/organizations-bg-sm.png" alt="Image: Education classroom" class="section-dash-image"/>
+				<div class="container container-flex split-container-flex">
+					<div class="section-split">
+						<div class="section-content">
+							<h2>The Commitment:</h2>
+							<h1>Civic Partners</h1>
+							<p>Civic Partners like nonprofits, workforce development agencies and government bodies will work with the Tech Opportunity Fund to meet the full needs of students. These partners are committing to taking measurable actions to support scholarship recipients including providing financial aid, subsidizing short-term housing, assisting with access to transportation and providing free counseling. The White House has endorsed this program and is actively encouraging as many cities as possible to participate.</p>
+							<div class="section-sponsers">
+								<div class="section-sponser-image">
+									<img src="images/logos/white-house-logo-2.png" alt="Logo: The White House" />
+								</div>
+								<!-- <div class="section-sponser-image">
+									<img src="images/logos/anita-borg-logo.png" alt="Logo: Anita Borg" />
+								</div>
+								<div class="section-sponser-image">
+									<img src="images/logos/nclr-logo.png" alt="Logo: NCLR" />
+								</div> -->
+							</div>
+							<!-- <a href="https://theironyard.typeform.com/to/LMPiWb" class="btn-link">Interested in becoming a Civic Partner?<i class="glyphicon glyphicon-chevron-right"></i></a> -->
+							<a class="typeform-share link" href="https://theironyard.typeform.com/to/LMPiWb" class="btn-link" data-mode="1" target="_blank">Interested in becoming a Civic Partner?<i class="glyphicon glyphicon-chevron-right"></i></a>
+<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+
+
+
+						</div>
+					</div>
+					<div class="section-split"></div>
+				</div>
+			</div>
+			<div class="slide-overlay left"></div>
+		</div>
+	</div>
+	<div class="section " id="section5">
+		<div class="section-dash">
+			<div class="content">
+				<img src="images/backgrounds/accountability/accountability-bg-sm.png" alt="Image: accountability" class="section-dash-image"/>
+				<div class="container container-flex split-container-flex">
+					<div class="section-split">
+						<div class="section-content">
+							<h2>The Commitment:</h2>
+							<h1>Accountability</h1>
+							<p>The Tech Opportunity Fund is committed to being transparent and accountable to its students and partners. The outcomes of the scholarship program will be audited by a third-party to ensure  that the Fund is always working toward the best interest of the students.</p>
+							<!-- <div class="section-sponsers">
+								<div class="section-sponser-image">
+									<img src="images/logos/skills-fund-logo.png" alt="Logo: Skills Fund" />
+								</div>
+							</div> -->
+						</div>
+					</div>
+					<div class="section-split"></div>
+				</div>
+			</div>
+			<div class="slide-overlay left accountability"></div>
+		</div>
+	</div>
+	<div class="section" id="section6">
+		<div class="section-map">
+			<div class="section-content section-location">
+				<div id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion-collapse">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<h1>Education Partner Locations</h1>
+								</h4>
+							</div>
+						</a>
+						<div id="collapseOne" class="panel-collapse collapse section-collapsed in" role="tabpanel" aria-labelledby="headingOne">
+							<p>Tech Opportunity Fund scholarships will be awarded for students to attend participating code schools including The Iron Yard and Code Fellows.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="map" class="map content"></div>
+		</div>
+	</div>
+	<div class="section fp-auto-height" id="section7">
+		<div class="container">
+			<div id="footer-top" class="footer-top">
+				<div class="footer-left">
+					<h5>Stay in the Loop</h5>
+					<p>Sign up for the Tech Opportunity Fund email list to receive announcements, new partners, and city additions, or contact the Tech Opportunity Fund at <a href="mailto:techopportunityfund@theironyard.com">techopportunityfund@theironyard.com</a> </p>
+				</div>
+				<div class="footer-right">
+					<a class="btn btn-desktop typeform-share link" href="https://theironyard.typeform.com/to/ghD9qw" data-mode="1" target="_blank">Sign Up</a>
+					<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>Copyright © 2016 Tech Opportunity Fund</p>
+		</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/all.js"></script>
+<script>
+    var map;
+    var activeInfoWindow;
+    function initMap() {
+		// Custom Map Styles
+        var customMapType = new google.maps.StyledMapType([
+			{
+				"featureType": "administrative",
+			  	"elementType": "labels.text.fill",
+			  	"stylers": [
+					{
+						"color":"#444444"
+					}
+				]
+			},
+			{
+				"featureType": "landscape",
+				"elementType": "all",
+				"stylers": [
+					{
+						"color": "#f2f2f2"
+					}
+				]
+			},
+			{
+				"featureType": "landscape.natural.landcover",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#f2f2f2"
+					}
+				]
+			},
+			{
+				"featureType": "poi",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "road",
+				"elementType": "all",
+				"stylers": [
+					{
+						"saturation": -100
+					},
+					{
+						"lightness": 45
+					}
+				]
+			},
+			{
+				"featureType": "road.highway",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "simplified"
+					}
+				]
+			},
+			{
+				"featureType": "road.arterial",
+				"elementType": "labels.icon",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "transit",
+				"elementType": "all",
+				"stylers": [
+					{
+						"visibility": "off"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "all",
+				"stylers": [
+					{
+						"color": "#46bcec"
+					},
+					{
+						"visibility": "on"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#99b7c5"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#526c79"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "labels.text.stroke",
+				"stylers": [
+					{
+						"color": "#99b7c5"
+					}
+				]
+			}
+		],
+		{
+            name: 'Custom Style'
+        });
+        var customMapTypeId = 'custom_style';
+
+        map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 37.09024, lng: -95.712891},
+			zoom: 5,
+			maxZoom: 10,
+			minZoom: 3,
+			scrollwheel: false,
+			navigationControl: false,
+			mapTypeControl: false,
+			scaleControl: false,
+			draggable: true,
+			mapTypeControlOptions: {
+				mapTypeIds: [google.maps.MapTypeId.TERRAIN, customMapTypeId]
+			}
+		});
+
+		function changeMap() {
+			var center = map.getCenter();
+		    google.maps.event.trigger(map, "resize");
+			var latCenter = 33.548995,
+				longCenter = -84.387982;
+
+			var windowWidth = $(window).width();
+
+			if (windowWidth > 900) {
+				latCenter = 37.09024;
+				longCenter = -95.712891;
+			}
+
+			if (windowWidth > 1300) {
+				map.setZoom(4);
+				latCenter = 35.969941;
+				longCenter = -115.13983;
+			} else {
+				map.setZoom(5);
+			}
+
+			var newCenter = new google.maps.LatLng(latCenter, longCenter);
+		    map.setCenter(newCenter);
+		};
+
+		changeMap();
+		// var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		// this is our gem
+		google.maps.event.addDomListener(window, "resize", function() {
+		    changeMap();
+		});
+
+        map.mapTypes.set(customMapTypeId, customMapType);
+		map.setMapTypeId(customMapTypeId);
+
+		// Locations & Sponsors
+		// Atlanta Downtown
+		var atlanta = new google.maps.LatLng(33.548995,-84.387982);
+		var atlantaSponsors = "The Iron Yard";
+		fnPlaceMarkers(atlanta,"Atlanta Downtown", atlantaSponsors, "https://www.theironyard.com/locations/atlanta.html");
+
+		// Atlanta Perimeter
+		var atlantaPerimeter = new google.maps.LatLng(33.756215, -83.987962);
+		var atlantaPerimeterSponsors = "The Iron Yard";
+		fnPlaceMarkers(atlantaPerimeter,"Atlanta Perimeter", atlantaPerimeterSponsors, "https://www.theironyard.com/locations/atlanta-perimeter.html");
+
+		// Austin
+		var austin = new google.maps.LatLng(30.067153, -97.743061);
+		var austinSponsors = "The Iron Yard";
+		fnPlaceMarkers(austin,"Austin", austinSponsors, "https://www.theironyard.com/locations/austin.html");
+
+		// Charleston
+		var charleston = new google.maps.LatLng(32.576475, -79.931051);
+		var charlestonSponsors = "The Iron Yard";
+		fnPlaceMarkers(charleston,"Charleston", charlestonSponsors, "https://www.theironyard.com/locations/charleston.html");
+
+		// Charlotte
+		var charlotte = new google.maps.LatLng(35.027087, -80.843127);
+		var charlotteSponsors = "The Iron Yard";
+		fnPlaceMarkers(charlotte,"Charlotte", charlotteSponsors, "https://www.theironyard.com/locations/charlotte.html");
+
+		// Cincinnati
+		var cincinnati = new google.maps.LatLng(38.903118, -84.51202);
+		var cincinnatiSponsors = "The Iron Yard";
+		fnPlaceMarkers(cincinnati,"Cincinnati", cincinnatiSponsors, "https://www.theironyard.com/locations/cincinnati.html");
+
+		// Columbia
+		var columbia = new google.maps.LatLng(33.800710, -81.034814);
+		var columbiaSponsors = "The Iron Yard";
+		fnPlaceMarkers(columbia,"Columbia", columbiaSponsors, "https://www.theironyard.com/locations/columbia.html");
+
+		// Dallas
+		var dallas = new google.maps.LatLng(32.576664, -96.796988);
+		var dallasSponsors = "The Iron Yard";
+		fnPlaceMarkers(dallas,"Dallas", dallasSponsors, "https://www.theironyard.com/locations/dallas.html");
+
+		// Detroit
+		var detroit = new google.maps.LatLng(42.131427, -83.045754);
+		var detroitSponsors = "The Iron Yard";
+		fnPlaceMarkers(detroit,"Detroit", detroitSponsors, "https://www.theironyard.com/locations/detroit.html");
+
+		// Durham
+		var durham = new google.maps.LatLng(35.794033, -78.898619);
+		var durhamSponsors = "The Iron Yard";
+		fnPlaceMarkers(durham,"Durham", durhamSponsors, "https://www.theironyard.com/locations/durham.html");
+
+		// Greenville
+		var greenville = new google.maps.LatLng(34.652618, -82.39401);
+		var greenvilleSponsors = "The Iron Yard";
+		fnPlaceMarkers(greenville,"Greenville", greenvilleSponsors, "https://www.theironyard.com/locations/greenville.html");
+
+		// Houston
+		var houston = new google.maps.LatLng(29.560427, -95.369803);
+		var houstonSponsors = "The Iron Yard";
+		fnPlaceMarkers(houston,"Houston", houstonSponsors, "https://www.theironyard.com/locations/houston.html");
+
+		// Indianapolis
+		var indianapolis = new google.maps.LatLng(39.680228, -86.157476);
+		var indianapolisSponsors = "The Iron Yard";
+		fnPlaceMarkers(indianapolis,"Indianapolis", indianapolisSponsors, "https://www.theironyard.com/locations/indianapolis.html");
+
+		// Las Vegas
+		var lasVegas = new google.maps.LatLng(35.969941, -115.13983);
+		var lasVegasSponsors = "The Iron Yard";
+		fnPlaceMarkers(lasVegas,"Las Vegas", lasVegasSponsors, "https://www.theironyard.com/locations/las-vegas.html");
+
+		// Minneapolis
+		var minneapolis = new google.maps.LatLng(44.777753, -93.265011);
+		var minneapolisSponsors = "The Iron Yard";
+		fnPlaceMarkers(minneapolis,"Minneapolis", minneapolisSponsors, "https://www.theironyard.com/locations/minneapolis.html");
+
+		// Nashville
+		var nashville = new google.maps.LatLng(35.962664, -86.781602);
+		var nashvilleSponsors = "The Iron Yard";
+		fnPlaceMarkers(nashville,"Nashville", nashvilleSponsors, "https://www.theironyard.com/locations/nashville.html");
+
+		// Orlando
+		var orlando = new google.maps.LatLng(28.5409511, -81.3834534);
+		var orlandoSponsors = "The Iron Yard";
+		fnPlaceMarkers(orlando,"Orlando", orlandoSponsors, "https://www.theironyard.com/locations/orlando.html");
+
+		// Portland
+		var portland = new google.maps.LatLng(45.323062, -122.676482);
+		var portlandSponsors = "Code Fellows";
+		fnPlaceMarkers(portland,"Portland", portlandSponsors, "https://www.codefellows.org/locations/learn-to-code-in-portland");
+
+		// Raleigh
+		var raleigh = new google.maps.LatLng(35.579590, -78.638179);
+		var raleighSponsors = "The Iron Yard";
+		fnPlaceMarkers(raleigh,"Raleigh", raleighSponsors, "https://www.theironyard.com/locations/raleigh.html");
+
+		// Salt Lake City
+		var saltLakeCity = new google.maps.LatLng(40.560779, -111.891047);
+		var saltLakeCitySponsors = "The Iron Yard";
+		fnPlaceMarkers(saltLakeCity,"Salt Lake City", saltLakeCitySponsors, "https://www.theironyard.com/locations/slc.html");
+
+		// San Antonio
+		var sanAntonio = new google.maps.LatLng(29.224122, -98.493628);
+		var sanAntonioSponsors = "The Iron Yard";
+		fnPlaceMarkers(sanAntonio,"San Antonio", sanAntonioSponsors, "https://www.theironyard.com/locations/san-antonio.html");
+
+		// Seattle
+		var seattle = new google.maps.LatLng(47.506209, -122.332071);
+		var seattleSponsers = "Code Fellows";
+		fnPlaceMarkers(seattle,"Seattle", seattleSponsers, "https://www.codefellows.org/locations/learn-to-code-in-seattle");
+
+		// Tampa Bay
+		var tampabay = new google.maps.LatLng(27.7701642, -82.6386043);
+		var tampabaySponsers = "The Iron Yard";
+		fnPlaceMarkers(tampabay,"Tampa Bay", tampabaySponsers, "https://www.theironyard.com/locations/tampa-bay.html");
+
+		// Washington DC
+		var washingtonDc = new google.maps.LatLng(38.707192, -77.036871);
+		var washingtonDcSponsors = "The Iron Yard";
+		fnPlaceMarkers(washingtonDc,"Washington, DC", washingtonDcSponsors, "https://www.theironyard.com/locations/dc.html");
+
+        function fnPlaceMarkers(myLocation,myCityName,citySponsors,cityLink) {
+
+			var marker = new google.maps.Marker({
+				position: myLocation,
+			    icon: 'images/map/marker.png'
+			});
+
+			// Renders the marker on the specified map
+			marker.setMap(map);
+
+			// create an InfoWindow - for mouseover
+			var infoWnd = new google.maps.InfoWindow();
+
+			// create an InfoWindow -  for mouseclick
+			var infoWnd2 = new google.maps.InfoWindow();
+
+			// -----------------------
+			// ON MOUSEOVER
+			// -----------------------
+
+			// add content to your InfoWindow
+			infoWnd.setContent('<div class="location"><a href="'+ cityLink + '" class="location-title">' + myCityName + '</a><span class="sponsors"><br>Hosted by:<span>' + citySponsors + '</span></span></div>');
+
+			// add listener on InfoWindow for mouseover event
+			google.maps.event.addListener(marker, 'mouseover', function() {
+
+				// Close active window if exists - [one might expect this to be default behaviour no?]
+				if(activeInfoWindow != null) activeInfoWindow.close();
+
+				// Close info Window on mouseclick if already opened
+				infoWnd2.close();
+
+				// Open new InfoWindow for mouseover event
+				infoWnd.open(map, marker);
+
+				// Store new open InfoWindow in global variable
+				activeInfoWindow = infoWnd;
+			});
+
+			// on mouseout (moved mouse off marker) make infoWindow disappear
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				infoWnd.close();
+			});
+
+			// --------------------------------
+			// ON MARKER CLICK - (Mouse click)
+			// --------------------------------
+
+			// add content to InfoWindow for click event
+			infoWnd2.setContent('<div class="location"><a href="'+ cityLink +'" class="location-title">' + myCityName + '</a><span class="sponsors"><br>Hosted by:<span>' + citySponsors + '</span></span></div>');
+
+			// add listener on InfoWindow for click event
+			google.maps.event.addListener(marker, 'click', function() {
+				//Close active window if exists - [one might expect this to be default behaviour no?]
+				if(activeInfoWindow != null) activeInfoWindow.close();
+
+				// Open InfoWindow - on click
+				infoWnd2.open(map, marker);
+
+				// Close "mouseover" infoWindow
+				infoWnd.close();
+
+				// Store new open InfoWindow in global variable
+				activeInfoWindow = infoWnd2;
+			});
+	    }
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_Az0rlnaRhNOJO5eexSVWiBm0lxFUdYQ&callback=initMap" async defer></script>
+
+<!-- Google Analytics! -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-79842013-1', 'auto');
+	ga('send', 'pageview');
+</script>
+</body>
+</html>
